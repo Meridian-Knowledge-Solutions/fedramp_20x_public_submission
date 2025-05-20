@@ -2,7 +2,7 @@
   "csp_information": {
     "organization_name": "Meridian LMS",
     "system_name": "Meridian LMS SaaS Platform",
-    "deployment_environment": "AWS GovCloud (US)",
+    "deployment_environment": "AWS Commericial (east)",
     "submission_date": "2025-05-XX",
     "contact_email": "aburroughs@meridianks.com",
     "submission_version": "1.0"
