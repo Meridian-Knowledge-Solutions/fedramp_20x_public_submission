@@ -1,109 +1,104 @@
-# FedRAMP Low 20x Pilot: Meridian LMS
+# FedRAMP 20x Machine-Readable Submission Package (Public)
 
-This repository contains Meridian Knowledge Solutions' official submission to the **FedRAMP 20x Phase One Pilot**, representing a modern, machine-readable authorization package for a Low-impact SaaS environment. It includes Key Security Indicator (KSI) validations, structured evidence, and automated compliance artifacts in alignment with emerging 20x guidance and the FedRAMP Authorization Act (44 USC § 3609).
+This repository contains Meridian LMS’s structured submission for the **FedRAMP 20x Phase One Pilot**, aligned with RFC-0006. It includes:
 
-## 🌐 Live Trust Dashboard (Public)
+- All 10 **Key Security Indicators (KSIs)**
+- Machine-readable validations aligned to **NIST 800-53 Rev. 5**
+- Git-tracked, evidence-backed attestations
+- Optional automation metadata for **Phase Two readiness**
+
+---
+
+## 🔗 Live Trust Dashboard
+
 A live, interactive dashboard showcasing all KSI validations is available here:
 
-🔗 **[https://meridian-knowledge-solutions.github.io/fedramp_low-20x-pilot/)**
+➡️ **[FedRAMP 20x Trust Dashboard](https://meridian-knowledge-solutions.github.io/fedramp_low-20x-pilot/)**
 
 This dashboard is:
-- Automatically updated on every commit
-- Linked directly to the KSI validation JSON
-- Designed for transparency, audit readiness, and continuous trust reporting
+- ✅ Automatically updated on every commit
+- 📂 Linked directly to the `fedramp20x_submission.json`
+- 🔎 Designed for transparency, audit readiness, and continuous trust reporting
 
 ---
 
-# 📦 FedRAMP 20x Machine-Readable Submission Package
-
-This repository contains a **structured evidence submission** for the **FedRAMP 20x Phase One Pilot**, aligned with [RFC-0006](https://github.com/GSA/fedramp-automation/blob/main/rfcs/rfc-0006.md). It includes **all 10 Key Security Indicators (KSIs)** and maps supporting evidence to clearly structured JSON declarations designed for auditability, traceability, and future automation.
-
----
-
-## 📁 Directory Structure
+## 📁 Repository Structure
 
 ```
 .
-├── machine_readable_package.json
-├── evidence/
-│   └── ksi-[code]/
-│       └── static/   # PDFs, screenshots, diagrams, policies
-├── evidence_v2/ (optional, Phase Two)
-│   └── ksi-[code]/
-│       ├── static/   # Human-readable documentation
-│       └── live/     # CLI/API/automated scan outputs
-├── metadata/
-│   └── ksi-[code]_metadata.json
-└── README_phase2.md (optional)
+├── fedramp20x_submission.json         # Main machine-readable submission (Phase One)
+├── evidence/                          # Phase One supporting materials (structure only)
+│   └── ksi-[code]/                    # KSI folders (no artifacts)
+│       └── README_ksi-[code].md       # Describes what evidence would exist
+│       └── *.json                     # Optional metadata
+├── evidence_commit_metadata.json      # Git metadata for each referenced evidence file
+├── dashboard/
+│   └── index.html                     # Public dashboard UI
+└── README.md
 ```
-
-- `evidence/`: Primary evidence folder for **Phase One**
-- `machine_readable_package.json`: JSON schema defining KSI validations
-- `metadata/`: Supplemental metadata for each KSI (description, controls, validation method)
-- `evidence_v2/`: Optional structure for Phase Two readiness
 
 ---
 
-## 📄 `machine_readable_package.json`
+## 📄 Submission JSON Format
 
-This file defines the core validations for each KSI. Each entry follows this schema:
+This submission is defined in `fedramp20x_submission.json`, using the Phase One format:
 
 ```json
 {
-  "ksi_validations": [
+  "ksi_id": "KSI-CNA",
+  "title": "Cloud Native Architecture",
+  "validation_results": [
     {
-      "ksi_id": "KSI-CNA",
-      "title": "Cloud Native Architecture",
-      "validation_results": [
-        {
-          "description": "Have Denial of Service (DoS) protection implemented for all services.",
-          "assertion": "true",
-          "evidence_reference": "evidence/ksi-cna/aws_shield_dos_protection.pdf"
-        }
-      ],
-      "continuous_reporting": true
+      "description": "Have Denial of Service (DoS) protection implemented for all services.",
+      "assertion": "true",
+      "evidence_reference": "evidence/ksi-cna/aws_shield_dos_protection.pdf"
     }
-  ]
+  ],
+  "continuous_reporting": true
 }
 ```
 
 ### 🔍 Key Fields
 
-| Field | Description |
-|-------|-------------|
-| `ksi_id` | Unique identifier for the Key Security Indicator |
-| `title` | Human-readable title of the KSI |
-| `validation_results[]` | Array of assertions supporting each KSI |
-| `description` | Narrative of what is being validated |
-| `assertion` | Boolean value `"true"` or `"false"` |
-| `evidence_reference` | File path to supporting artifact |
-| `continuous_reporting` | Optional flag for automated validations |
+| Field               | Description                                           |
+|--------------------|-------------------------------------------------------|
+| `ksi_id`           | Unique identifier for the Key Security Indicator      |
+| `title`            | Human-readable KSI title                              |
+| `description`      | What is being validated                               |
+| `assertion`        | `true` or `false` based on supporting evidence        |
+| `evidence_reference` | File path to supporting file under `evidence/`       |
+| `continuous_reporting` | Boolean flag for Phase Two automation eligibility |
 
 ---
 
-## 📝 Submission Rationale
+## 🛠️ Evidence and Automation Strategy
 
-This package meets the Phase One submission requirements by:
+This public package includes **folder structures and metadata only**. Full evidence files are excluded to protect security posture. However, this repo is fully aligned with:
 
-- Addressing **all 10 Key Security Indicators (KSIs)**  
-- Providing **NIST control-aligned validations** for FedRAMP Low
-- Using a **machine-readable JSON format** that is traceable and auditable
-- Including static evidence via Git-tracked files (PDFs, screenshots, policies)
-
-Although optional fields such as `validation_method`, `evidence_type`, and `service_dependencies` are not required for Phase One, they are **included** to support FedRAMP’s automation goals and 44 U.S.C. § 3609 modernization guidance.
+- 📁 `evidence/ksi-[code]/` structure with metadata in place
+- 🧾 `evidence_commit_metadata.json` generated via Git to show commit SHA and timestamp
+- 🧪 `validation_results[]` reflecting audit-ready truth values
+- 🔄 Continuous monitoring eligibility via `continuous_reporting: true` flags
 
 ---
 
-## 📘 Extended Field Support (Optional but Included)
+## 🚀 Phase Two Readiness: Automation by Design
 
-| Field | Purpose |
-|-------|---------|
-| `validation_timestamp` | Time validation occurred (for audit trail) |
-| `validation_method` | How the validation was confirmed (e.g., Terraform plan, log export) |
-| `evidence_type` | Type of evidence (e.g., PDF, CLI output, diagram) |
-| `service_dependencies` | AWS services used (e.g., GuardDuty, WAF, IAM Identity Center) |
+As we progress toward **Phase Two**, this package is designed to be fully automatable via:
 
-These fields are actively used throughout the `machine_readable_package.json` and `metadata` directory and provide full traceability for each assertion.
+- **Terraform** infrastructure-as-code output
+- **AWS-native CLI evidence** (e.g., Security Hub, Inspector, Config)
+- **Jira + JSON integration** for MTTD/MTTR and ticket validation
+- **GitHub Actions** for continuous evidence snapshotting
+
+### Future Enhancements Include:
+
+- `validation_timestamp` (evidence scan time)
+- `validation_method` (IaC scan, log audit, manual review)
+- `evidence_type` (PDF, CLI output, diagram)
+- `service_dependencies` (e.g., IAM, Config, GuardDuty)
+
+These are already supported by our schema and tooling.
 
 ---
 
@@ -114,55 +109,65 @@ We’ve included a parallel structure under `evidence_v2/` to support **Phase Tw
 - `static/`: Human-readable artifacts (PDFs, screenshots)
 - `live/`: CLI outputs, logs, continuous validation evidence (e.g., tfsec, Inspector, AWS Config)
 
-This future-facing format anticipates FedRAMP’s continuous monitoring objectives and is documented further in `README_phase2.md`.
+This future-facing format anticipates FedRAMP’s continuous monitoring objectives.
 
 ---
 
-## 🛠️ Controls and KSIs Mapped
+---
 
-This package addresses **over 100 individual FedRAMP Rev. 5 controls**, mapped to the following 10 KSIs:
+## ✅ Scope and KSI Coverage
 
-- **KSI-CNA**: Cloud Native Architecture  
-- **KSI-SC**: Service Configuration  
-- **KSI-IAM**: Identity and Access Management  
-- **KSI-MLA**: Monitoring, Logging, and Auditing  
-- **KSI-CM**: Change Management  
-- **KSI-PI**: Policy and Inventory  
-- **KSI-3IR**: Third Party Information Resources  
-- **KSI-CE**: Cybersecurity Education  
-- **KSI-IR**: Incident Response
+This submission includes **all 10 KSIs** required for the FedRAMP 20x pilot:
 
-Each KSI is supported by:
-- A JSON `validation_results[]` array
-- A `metadata/` companion file describing its scope and mapped controls
-- A folder of supporting evidence under `evidence/ksi-[code]/`
+| KSI ID     | Title                                |
+|------------|--------------------------------------|
+| KSI-CNA    | Cloud Native Architecture            |
+| KSI-SC     | Service Configuration                |
+| KSI-IAM    | Identity and Access Management       |
+| KSI-MLA    | Monitoring, Logging, and Auditing    |
+| KSI-CM     | Change Management                    |
+| KSI-PI     | Policy and Inventory                 |
+| KSI-3IR    | Third Party Information Resources    |
+| KSI-CE     | Cybersecurity Education              |
+| KSI-IR     | Incident Response                    |
 
 ---
 
-## 🧪 Evidence Source Summary
+## ⚠️ Transparency and Risk Considerations
 
-Our package leverages:
-- AWS-native services: **IAM, Config, Shield, WAF, GuardDuty, CloudTrail, Backup**
-- Terraform infrastructure-as-code
-- Internal policy and training systems
-- Jira for incident tracking and MTTD/MTTR measurement
+This repo follows FedRAMP guidance for **public participation in 20x**:
 
----
+> “FedRAMP will prioritize public package submissions for the 20x pilot effort… Cybersecurity is a public good that is strongest when the public is given the ability to contribute.” — Pete, FedRAMP PMO
 
-## ⚠️ Audit-Focused Design
-
-This submission was designed for **Fortreum’s audit process**, including:
-- Clear **true/false state assertions** for each KSI
-- Forward-declared **failure conditions**
-- Optional validation of automated refresh potential (e.g., `continuous_reporting`)
-- Forward compatibility with future **FedRAMP 20x authorization lifecycle automation**
+> Per CISA BOD 20-01, our goal is to enhance continuous validation via public innovation without exposing sensitive configurations or operational detail.
 
 ---
 
-## 📬 Questions?
+## 🧪 For Auditors
 
-**Primary Contact**  
-Adam Burroughs  
-📧 aburroughs@meridianks.com
+Each validation in this repo is:
+
+- ✅ Asserted true/false using Git-tracked evidence references
+- 🧩 Mapped to commit SHA + timestamp (via evidence_commit_metadata.json)
+- 🔎 Linked to supporting KSI metadata and NIST mappings
+- 📊 Displayed in our live dashboard for interactive review
+
 ---
 
+## 📬 Contact
+
+**Adam Burroughs**  
+Meridian Knowledge Solutions  
+📧 [aburroughs@meridianks.com](mailto:aburroughs@meridianks.com)
+
+---
+
+## 📚 Related Resources
+
+- [RFC-0006 – KSI Machine-Readable Format](https://github.com/GSA/fedramp-automation/blob/main/RFC/RFC-0006.md)
+- [FedRAMP 20x Pilot Program](https://www.fedramp.gov/fedramp-20x/)
+- [44 U.S. Code § 3609 – FedRAMP Modernization Statute](https://www.law.cornell.edu/uscode/text/44/3609)
+
+---
+
+_This repo is maintained by Meridian LMS as part of its participation in the FedRAMP 20x pilot. No sensitive production data or operational evidence is included._
