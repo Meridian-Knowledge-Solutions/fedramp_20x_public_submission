@@ -1,0 +1,126 @@
+{
+  "ksi-3ir/data_flow_elastic_metadata.pdf": { "commit_sha": "0bed801", "commit_time": "2025-05-09T02:53:50Z" }
+,
+  "ksi-3ir/fedramp_moderate_vendor_list.xlsx": { "commit_sha": "c420828", "commit_time": "2025-05-16T02:12:03Z" }
+,
+  "ksi-3ir/sbom_including_elastic.json": { "commit_sha": "f31dcab", "commit_time": "2025-05-16T03:32:54Z" }
+,
+  "ksi-3ir/ssp_ac20_elastic_cloud_excerpt.png": { "commit_sha": "69fc995", "commit_time": "2025-05-09T02:52:38Z" }
+,
+  "ksi-3ir/system_boundary_with_elastic.pdf": { "commit_sha": "0bed801", "commit_time": "2025-05-09T02:53:50Z" }
+,
+  "ksi-3ir/terraform_interconnection_controls.png": { "commit_sha": "1a9a1db", "commit_time": "2025-05-14T02:06:11Z" }
+,
+  "ksi-ce/cyber_security_training.png": { "commit_sha": "0075911", "commit_time": "2025-05-09T01:53:21Z" }
+,
+  "ksi-ce/fedramp_role_based.png": { "commit_sha": "0075911", "commit_time": "2025-05-09T01:53:21Z" }
+,
+  "ksi-ce/security_training_roster.png": { "commit_sha": "0075911", "commit_time": "2025-05-09T01:53:21Z" }
+,
+  "ksi-cm/configuration_management_plan.pdf": { "commit_sha": "b804e3f", "commit_time": "2025-04-30T21:31:38Z" }
+,
+  "ksi-cm/configuration_management_policy_and_procedures.pdf": { "commit_sha": "b804e3f", "commit_time": "2025-04-30T21:31:38Z" }
+,
+  "ksi-cm/example_it_ops_ticket.png": { "commit_sha": "552965a", "commit_time": "2025-04-30T23:48:15Z" }
+,
+  "ksi-cm/terraform_plan_output.txt": { "commit_sha": "23755d0", "commit_time": "2025-05-15T20:01:53Z" }
+,
+  "ksi-cm/weekly_change_management_meeting_final.png": { "commit_sha": "6e0cbbd", "commit_time": "2025-04-30T23:57:38Z" }
+,
+  "ksi-cna/aws_config.pdf": { "commit_sha": "9e05629", "commit_time": "2025-04-28T22:13:24Z" }
+,
+  "ksi-cna/aws_shield_dos_protection.pdf": { "commit_sha": "e1887fc", "commit_time": "2025-05-13T13:50:40Z" }
+,
+  "ksi-cna/aws_waf_rule_set.png": { "commit_sha": "41881ba", "commit_time": "2025-05-16T20:49:09Z" }
+,
+  "ksi-cna/data_flow_diagram.pdf": { "commit_sha": "d48f282", "commit_time": "2025-04-27T01:56:02Z" }
+,
+  "ksi-cna/nacl_inbound_rules.png": { "commit_sha": "5bdc80a", "commit_time": "2025-05-06T03:51:40Z" }
+,
+  "ksi-cna/nacl_outbound_rules.png": { "commit_sha": "e67747a", "commit_time": "2025-05-06T03:39:04Z" }
+,
+  "ksi-cna/network_diagram.pdf": { "commit_sha": "4621fd6", "commit_time": "2025-04-28T21:10:22Z" }
+,
+  "ksi-cna/permission_sets.png": { "commit_sha": "51b0669", "commit_time": "2025-05-14T00:20:53Z" }
+,
+  "ksi-cna/system_boundary_and_network_architecture.pdf": { "commit_sha": "cef4b89", "commit_time": "2025-04-28T21:10:22Z" }
+,
+  "ksi-cna/terraform_plan_output.txt": { "commit_sha": "16634e0", "commit_time": "2025-05-15T20:07:53Z" }
+,
+  "ksi-cna/vpc_security_group_nacl_rules.pdf": { "commit_sha": "a99dc0c", "commit_time": "2025-05-13T13:50:09Z" }
+,
+  "ksi-cna/vpc_traffic_flow_enforcement.pdf": { "commit_sha": "bd59a7e", "commit_time": "2025-05-13T13:49:24Z" }
+,
+  "ksi-iam/mfa_enforcement.png": { "commit_sha": "6197bd4", "commit_time": "2025-04-29T20:46:53Z" }
+,
+  "ksi-iam/okta_password_requirements.png": { "commit_sha": "dd26421", "commit_time": "2025-05-19T19:08:26Z" }
+,
+  "ksi-iam/password_policy_nist_800_63b.pdf": { "commit_sha": "6b76d98", "commit_time": "2025-04-30T06:41:20Z" }
+,
+  "ksi-iam/permission_sets.png": { "commit_sha": "76682e2", "commit_time": "2025-05-15T01:52:45Z" }
+,
+  "ksi-iam/saml.png": { "commit_sha": "1e2c325", "commit_time": "2025-04-30T00:17:48Z" }
+,
+  "ksi-iam/ssm_instance_role.png": { "commit_sha": "e36d591", "commit_time": "2025-05-15T02:08:01Z" }
+,
+  "ksi-iam/ssm_session_manager_policy.png": { "commit_sha": "e36d591", "commit_time": "2025-05-15T02:08:01Z" }
+,
+  "ksi-ir/backup_plans.png": { "commit_sha": "6b8f1cb", "commit_time": "2025-05-16T03:59:24Z" }
+,
+  "ksi-ir/combined_tabletop_test_report_template.pdf": { "commit_sha": "546cb90", "commit_time": "2025-05-08T00:45:34Z" }
+,
+  "ksi-ir/contingency_plan.pdf": { "commit_sha": "546cb90", "commit_time": "2025-05-08T00:45:34Z" }
+,
+  "ksi-ir/contingency_plan_test_report_example.pdf": { "commit_sha": "546cb90", "commit_time": "2025-05-08T00:45:34Z" }
+,
+  "ksi-ir/contingency_test_plan.pdf": { "commit_sha": "546cb90", "commit_time": "2025-05-08T00:45:34Z" }
+,
+  "ksi-ir/quick_reference_irp_guide.pdf": { "commit_sha": "546cb90", "commit_time": "2025-05-08T00:45:34Z" }
+,
+  "ksi-mla/audit_log_review.pdf": { "commit_sha": "07afca4", "commit_time": "2025-04-30T18:53:08Z" }
+,
+  "ksi-mla/cloud_trail.png": { "commit_sha": "3065b21", "commit_time": "2025-04-30T08:19:13Z" }
+,
+  "ksi-mla/guard_duty.png": { "commit_sha": "df9cb80", "commit_time": "2025-04-30T08:08:49Z" }
+,
+  "ksi-mla/inspector_EC2.png": { "commit_sha": "fe333eb", "commit_time": "2025-05-14T22:21:03Z" }
+,
+  "ksi-mla/inspector_node_running.png": { "commit_sha": "fe333eb", "commit_time": "2025-05-14T22:21:03Z" }
+,
+  "ksi-mla/jira_fedramp_project.png": { "commit_sha": "0db60e0", "commit_time": "2025-04-30T20:52:40Z" }
+,
+  "ksi-mla/sns_notifications.png": { "commit_sha": "35334b6", "commit_time": "2025-04-30T08:17:47Z" }
+,
+  "ksi-mla/stack_sets_cloudformation.png": { "commit_sha": "4e067ca", "commit_time": "2025-04-30T20:34:52Z" }
+,
+  "ksi-mla/terraform_plan_output.txt": { "commit_sha": "42d65a2", "commit_time": "2025-05-15T17:57:47Z" }
+,
+  "ksi-mla/vulnerability_management_process_final.pdf": { "commit_sha": "cc6c462", "commit_time": "2025-04-30T19:54:18Z" }
+,
+  "ksi-pi/automated_control_validation_methods.pdf": { "commit_sha": "5ee43b2", "commit_time": "2025-05-06T21:38:50Z" }
+,
+  "ksi-pi/aws_config_aggregator_dashboard.png": { "commit_sha": "d1146bf", "commit_time": "2025-05-02T18:22:27Z" }
+,
+  "ksi-pi/sdlc_secure_by_design_document.pdf": { "commit_sha": "633e584", "commit_time": "2025-05-05T22:25:17Z" }
+,
+  "ksi-pi/security_policy_collection_repository.zip": { "commit_sha": "576d2ce", "commit_time": "2025-05-05T20:21:13Z" }
+,
+  "ksi-pi/vulnerability_disclosure_program_final.pdf": { "commit_sha": "1b46658", "commit_time": "2025-05-05T22:12:59Z" }
+,
+  "ksi-sc/aws_config.pdf": { "commit_sha": "1a83524", "commit_time": "2025-04-28T22:01:27Z" }
+,
+  "ksi-sc/centralized_configuration_management_aggregator.png": { "commit_sha": "eb7ce83", "commit_time": "2025-04-30T07:00:32Z" }
+,
+  "ksi-sc/encryption_at_rest.png": { "commit_sha": "2637a45", "commit_time": "2025-04-29T20:18:31Z" }
+,
+  "ksi-sc/https_tls_encryption_all_endpoints.png": { "commit_sha": "4322e79", "commit_time": "2025-05-16T17:32:55Z" }
+,
+  "ksi-sc/kms_encryption.png": { "commit_sha": "49a8fc0", "commit_time": "2025-04-29T19:41:49Z" }
+,
+  "ksi-sc/patch_management_strategy.pdf": { "commit_sha": "c9dce0b", "commit_time": "2025-04-29T04:12:58Z" }
+,
+  "ksi-sc/planned_implementation_AMI.pdf": { "commit_sha": "38451f6", "commit_time": "2025-04-30T07:08:27Z" }
+,
+  "ksi-sc/security_hub.pdf": { "commit_sha": "9e05629", "commit_time": "2025-04-28T22:13:24Z" }
+
+}

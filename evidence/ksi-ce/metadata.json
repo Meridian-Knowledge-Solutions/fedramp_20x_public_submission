@@ -1,0 +1,18 @@
+{
+  "ksi_id": "ksi-ce",
+  "assertion": "All employees receive annual security training, and individuals in privileged roles complete additional role-specific cybersecurity education.",
+  "description": "Meridian ensures that all employees complete annual security awareness training through internal LMS modules. Training includes phishing awareness, data handling, and acceptable use. Privileged users (e.g., system administrators) are required to complete specialized training focused on access control, logging, incident response, and FedRAMP compliance. Training records are maintained and reviewed quarterly by compliance staff.",
+  "fedramp_controls": ["AT-1", "AT-2", "AT-3", "AT-4", "PL-4"],
+  "evidence_files": [
+    "security_training_roster.png",
+    "cyber_security_training.png",
+    "fedramp_role_based.png",
+  ],
+  "source_system": "LMS, Compliance Audit Logs, Internal Training Tracker",
+  "validation_method": "Training compliance is validated through completion reports from the LMS platform, role-based training logs, and quarterly audit reviews by the compliance lead. Completion of training is a condition of user account maintenance and privileged access.",
+  "source_config": "internal_training_management/training_tracker.xlsx",
+  "source_commit": "c4a7b92f",
+  "last_validated": "2025-05-07T14:30:00Z",
+  "expected_state": "compliant",
+  "failure_condition": "If annual training is not completed by all employees, or if specialized training for privileged roles is not delivered or documented, the system would be out of compliance."
+}

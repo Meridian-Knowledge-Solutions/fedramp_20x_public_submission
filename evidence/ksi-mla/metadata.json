@@ -1,0 +1,26 @@
+{
+  "ksi_id": "ksi-mla",
+  "assertion": "All security-relevant events and changes are monitored, logged centrally, and reviewed to detect anomalies or unauthorized activity in near real time.",
+  "description": "The system uses AWS CloudTrail, GuardDuty, and CloudWatch to monitor and log all API events, configuration changes, and security findings. Audit logs are reviewed regularly, and vulnerability management processes ensure timely remediation. Infrastructure-as-Code and cloud resources are scanned for misconfigurations. Jira is used to track and prioritize remediations.",
+  "fedramp_controls": [ "AU-2", "AU-3", "AU-4", "AU-6", "AU-8", "AU-11", "AU-12",
+  "SI-2", "RA-5", "CM-3", "CM-6"],
+  "evidence_files": [
+    "cloud_trial.png",
+    "guard_duty.png",
+    "sns_notifications.png",
+    "audit_log_review.pdf",
+    "vulnerability_management_process_final.pdf",
+    "stack_sets_cloudformation.png",
+    "jira_fedramp_project.png",
+    "inspector_node_running.png",
+    "inspector_EC2.png"
+    "terraform_plan_output.txt"
+  ],
+  "source_system": "AWS CloudTrail, GuardDuty, Config, CloudWatch, Jira, AWS Inspector",
+  "validation_method": "Validation via AWS dashboards, ticket evidence, and audit log reviews for process oversight.",
+  "source_config": "terraform/modules/logging/*.tf",
+  "source_commit": "5c7d8e9a", 
+  "last_validated": "2025-05-07T14:30:00Z",
+  "expected_state": "compliant",
+  "failure_condition": "Logging disabled, GuardDuty findings not reviewed, or failure to remediate vulnerabilities in a timely manner based on risk level. Jira backlog shows critical issues unaddressed or audit logs missing expected events."
+}

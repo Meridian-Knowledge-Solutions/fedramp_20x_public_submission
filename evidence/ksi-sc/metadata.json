@@ -1,0 +1,26 @@
+{
+    "ksi_id": "ksi-sc",
+  "assertion": "All service configurations are securely managed, encrypted, and centrally controlled with continuous validation.",
+  "description": "The system enforces secure configuration through AWS-native services such as AWS Config, KMS, and centralized Terraform modules. All traffic is encrypted in transit and at rest, and key rotation policies are implemented using AWS KMS.",
+  "fedramp_controls": [ "SC-12", "SC-13", "SC-28", "SC-28(1)", "SC-8", "SC-8(1)",
+  "CM-2", "CM-4", "CM-6", "CM-8",
+  "SI-3", "SI-4",
+  "RA-7", "IA-7", "AC-17"],
+  "evidence_files": [
+    "aws_config.pdf",
+    "https_tls_encryption_all_endpoints.pdf",
+    "encryption_at_rest.pdf",
+    "centralized_configuration_management_aggregator.png",
+    "planned_implementation_AMI.pdf",
+    "kms_encryption.png",
+    "patch_management_strategy.pdf"
+  ],
+  "source_system": "AWS Config, AWS KMS, Terraform, AWS Certificate Manager",
+  "validation_method": "Configuration evaluated via AWS Config rules, Terraform plan inspection, and policy document review.",
+  "source_config": "terraform/modules/security/*.tf",
+  "source_commit": "4d5e6f7g",
+  "last_validated": "2025-05-07T14:30:00Z",
+  "expected_state": "compliant",
+  "failure_condition": "If TLS versions below 1.2 are permitted, encryption at rest is not enforced, AWS Config rules detect drift, or key rotation exceeds the allowed timeframe."
+}
+

@@ -1,0 +1,27 @@
+{
+  "ksi_id": "ksi-iam",
+  "assertion": "Identity and access controls enforce least privilege, phishing-resistant MFA, and secure federation using SAML for all users.",
+  "description": "The system uses IAM Permission Sets and SCPs to enforce role-based access and prevent privilege escalation. SAML-based login enforces account federation with strong password policies and multi-factor authentication (MFA) via TOTP. All users are authenticated through Okta FedRAMP cell, and access is monitored and logged through CloudTrail.",
+  "fedramp_controls": [  "AC-2", "AC-3", "AC-5", "AC-6", "AC-14",
+  "AU-9",
+  "IA-2", "IA-2(1)", "IA-2(2)", "IA-2(8)", "IA-2(12)",
+  "IA-4", "IA-5", "IA-5(1)", "IA-6",
+  "IA-8", "IA-8(1)", "IA-8(2)", "IA-8(4)",
+  "IA-11",
+  "PS-2", "PS-3", "PS-4", "PS-5", "PS-7", "PS-9"],
+  "evidence_files": [
+    "mfa_enforcement.png",
+    "password_policy_nist_800_63b.pdf",
+    "saml.png",
+    "permission_sets.png",
+    "ssm_instance_role.png",
+    "ssm_session_manager_policy.png",
+  ],
+  "source_system": "AWS IAM Identity Center (SSO), Okta FedRAMP Cell, IAM Roles and Permission Sets, SCPs",
+  "validation_method": "User accounts and permissions validated via Okta admin console and AWS IAM Identity Center. MFA status verified via Okta policy. IAM policies reviewed via Terraform plan and AWS console exports.",
+  "source_config": "terraform/modules/iam/*.tf",
+  "source_commit": "9f8a7b6c", 
+  "last_validated": "2025-05-07T14:30:00Z",
+  "expected_state": "compliant",
+  "failure_condition": "If MFA is disabled for any active account, password complexity is not enforced, or if IAM permission sets grant more than required privileges without justification or review."
+}

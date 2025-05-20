@@ -1,0 +1,25 @@
+{
+  "ksi_id": "ksi-pi",
+  "assertion": "Security policies, asset inventories, and governance practices are maintained to ensure consistent and traceable security operations across the system.",
+  "description": "Asset inventories are automatically aggregated through AWS Config Aggregators and defined in Terraform state. Security policies are documented and stored in a version-controlled repository. A vulnerability disclosure program is maintained and published. Secure-by-design principles are embedded in the SDLC, and automated control validation is used for assurance. Budget and personnel for cybersecurity operations are defined annually.",
+  "fedramp_controls": [  "AC-1", "AU-1", "CA-1", "CM-1", "CM-8",
+  "CP-1", "IA-1", "IR-1", "PL-1", "PL-2",
+  "PS-1", "RA-1", "RA-3", "RA-5",
+  "SA-1", "SA-2", "SA-3", "SA-5", "SA-8",
+  "SC-1", "SI-1", "SR-1"],
+  "evidence_files": [
+    "aws_config_aggregator_dashboard.png",
+    "security_policy_collection_repository.zip",
+    "vulnerability_disclosure_program.pdf",
+    "sdlc_secure_by_design_document.pdf",
+    "automated_control_validation_methods.pdf",
+    "security_budget_allocation_and_roles.pdf"
+  ],
+  "source_system": "AWS Config Aggregator, GitHub, Jira, Internal Policy Repositories",
+  "validation_method": "Policies reviewed via internal document control and version-managed policy archive.",
+  "source_config": "terraform/modules/inventory/*.tf",
+  "source_commit": "da3f29bc", 
+  "last_validated": "2025-05-07T14:30:00Z",
+  "expected_state": "compliant",
+  "failure_condition": "If inventory is not automatically updated, policies are outdated or not version controlled, the disclosure program is missing, or SDLC does not reflect secure design principles."
+}

@@ -1,0 +1,22 @@
+{
+  "ksi_id": "ksi-ir",
+  "assertion": "The system maintains, tests, and executes incident response and recovery processes aligned with federal requirements for detection, reporting, and recovery.",
+  "description": "Incident response plans are formally documented and include definitions for RTO and RPO. Regular backup and recovery tests are conducted and verified. All security incidents are logged, tracked, and reported in accordance with federal reporting policies. Metrics such as Mean Time to Detect (MTTD) and Mean Time to Resolve (MTTR) are calculated and reviewed. AWS-native services including CloudTrail, Backup, and GuardDuty are used to monitor, restore, and respond.",
+  "fedramp_controls": ["IR-1", "IR-4", "IR-6", "CP-2", "CP-4", "CP-6", "CP-9", "CP-10"],
+  "evidence_files": [
+ "combined_tabletop_test_report_template.pdf",
+  "contingency_plan.pdf",
+  "contingency_plan_test_report_example.pdf",
+  "contingency_test_plan.pdf",
+  "quick_reference_irp_guide.pdf",
+  "aws_backup_plans_dashboard.png"
+  ],
+  "source_system": "AWS Backup, CloudTrail, GuardDuty, Terraform, Internal Playbooks, Jira",
+  "validation_method": "Incident response and contingency capabilities are validated through documented plans, test scenarios, and after-action reports. Tabletop exercises and test reports confirm the organization can meet its RTO/RPO objectives. Quick reference guides document operational response steps and roles. All IR documentation is reviewed annually and updated following test events or significant changes."
+  "source_config": "terraform/modules/backup_recovery/*.tf",
+  "source_commit": "f7a3e0bc",
+  "last_validated": "2025-05-07T14:30:00Z",
+  "expected_state": "compliant",
+  "failure_condition": "If backup tests fail or are not performed on schedule, RTO/RPO are not met or defined, incidents are not logged or reported, or if metrics like MTTD/MTTR are not tracked."
+}
+

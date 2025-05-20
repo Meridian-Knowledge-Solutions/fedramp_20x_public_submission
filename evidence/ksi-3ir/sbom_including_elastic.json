@@ -1,0 +1,41 @@
+{
+  "metadata": {
+    "title": "Elastic Cloud Integration (Metadata Search)",
+    "status": "Planned – SBOM is conditionally active based on production deployment in Low Mode",
+    "version": "N/A",
+    "author": "Meridian LMS DevSecOps",
+    "date_generated": "2025-05-08",
+    "notes": "This SBOM reflects anticipated components based on Elastic's official SDKs and guidance. Although the Elastic integration is not active at the time of submission, it is architecturally designed to support metadata-only indexing (e.g., course titles, tags) in future production deployments. The components listed are representative of the packages most commonly used for integrating Elastic Cloud into a Node.js-based LMS backend. This design-phase declaration supports KSI-3IR requirements for transparency and supply chain security.",
+    "citations": [
+      {
+        "title": "@elastic/elasticsearch Client Documentation",
+        "url": "https://www.elastic.co/guide/en/elasticsearch/client/javascript-api"
+      },
+      {
+        "title": "Elastic APM Agent for Node.js",
+        "url": "https://www.elastic.co/guide/en/apm/agent/nodejs/current/index.html"
+      },
+      {
+        "title": "CISA SBOM Guidance – EO 14028",
+        "url": "https://www.cisa.gov/resources-tools/resources/software-bill-materials-sbom"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "@elastic/elasticsearch",
+      "version": "8.12.0",
+      "type": "npm",
+      "license": "Apache-2.0",
+      "usage": "Will be used in production to support metadata-only indexing for course titles and tags"
+    },
+    {
+      "name": "elastic-apm-node",
+      "version": "4.0.0",
+      "type": "npm",
+      "license": "BSD-2-Clause",
+      "usage": "Optional telemetry agent for backend performance metrics (not currently active)"
+    }
+  ],
+  "activation_condition": "These components will be active if and when the Low Mode LMS is deployed in response to customer onboarding or contractual need. As of the 20x pilot submission, no production LMS resources are deployed."
+}

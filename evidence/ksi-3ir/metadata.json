@@ -1,0 +1,29 @@
+{
+  "ksi_id": "ksi-3ir",
+  "assertion": "The system manages supply chain risks by limiting third-party service use, ensuring FedRAMP authorization where applicable, and verifying vendor attestations, SBOMs, and architectural segmentation — even for inactive services scoped for future deployment.",
+  "description": "The LMS architecture is hosted entirely in AWS Commercial, with one declared third-party: Elastic Cloud, used exclusively for metadata indexing (e.g., course titles, tags). This integration is not currently deployed but is fully documented in boundary diagrams and the SSP. No PII, PHI, audit records, or sensitive content is transmitted. If activated, outbound access would be scoped to Elastic Cloud endpoints using Security Groups, with monitoring via GuardDuty and CloudTrail. A forward-declared SBOM and vendor attestation are included. All other third-party components are FedRAMP-authorized or excluded from the Low boundary.",
+  "fedramp_controls": [
+    "AC-2", "AC-20", "AC-23",
+    "CA-3", "CA-9",
+    "RA-3(1)",
+    "SA-4", "SA-9", "SA-12", "SA-13", "SA-22",
+    "SI-5",
+    "SR-2", "SR-2(1)", "SR-3", "SR-5", "SR-6", "SR-8", "SR-10", "SR-11", "SR-11(2)"
+  ],
+  "evidence_files": [
+    "ssp_ac20_elastic_cloud_excerpt.pdf",
+    "system_boundary_with_elastic.pdf",
+    "data_flow_elastic_metadata.pdf",
+    "terraform_interconnection_controls.png",
+    "fedramp_moderate_vendor_list.xlsx",
+    "sbom_including_elastic.json",
+    "elastic_attestation.pdf"
+  ],
+  "source_system": "Terraform, Elastic Cloud (planned), AWS VPC Networking, SSP Documentation",
+  "validation_method": "Third-party risk validation includes formal documentation of Elastic Cloud scope, FedRAMP Marketplace verification, architectural review of egress control logic, and forward-declared SBOM and vendor attestations aligned to EO 14028.",
+  "source_config": "terraform/modules/networking/*.tf",
+  "source_commit": "a83dcf29",
+  "last_validated": "2025-05-08T00:00:00Z",
+  "expected_state": "compliant",
+  "failure_condition": "If any third-party service is used outside FedRAMP authorization, or if Elastic Cloud is enabled without enforcing architectural scope, risk documentation, and supply chain validation processes."
+}

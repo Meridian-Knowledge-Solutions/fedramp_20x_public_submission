@@ -1,0 +1,25 @@
+{
+  "ksi_id": "ksi-cna",
+  "assertion": "The system uses a cloud-native architecture to isolate components, enforce traffic control, and minimize attack surface through zero trust design.",
+  "description": "The system is built on immutable, Terraform-managed infrastructure using AWS-native services to enforce strict segmentation, minimize exposure, and maintain configuration integrity. Components are isolated through scoped IAM roles, dedicated VPCs, and NACLs. Public-facing access is tightly controlled via AWS WAF and security groups. Compute resources operate without persistent state or credentials, using session-based administrative access through AWS SSM. This architecture reduces lateral movement risk and configuration drift while aligning with zero trust principles.",
+  "fedramp_controls": ["AC-3", "AC-4", "SC-7", "SC-12", "SA-11", "CM-2", "CM-6"],
+  "evidence_files": [
+  "aws_shield_dos_protection.pdf",
+  "aws_waf_rule_set.png",
+  "nacl_outbound_rules.png",
+  "nacl_inbound_rules.png",
+  "system_boundary_and_network_architecture.pdf",
+  "data_flow_diagram.pdf",
+  "permission_sets.pdf",
+  "vpc_traffic_flow_enforcement.pdf",
+  "security_hub.pdf"
+  "terraform_plan_output.txt"
+  ],
+  "source_system": "Terraform, AWS Config, AWS Network Firewall, IAM Permission Sets",
+  "validation_method": "Validated via Terraform plan outputs and AWS Config compliance checks for networking segmentation, role isolation, and firewall behavior. Architecture diagrams reviewed manually.",
+  "source_config": "terraform/modules/networking/*.tf",
+  "source_commit": "1a2b3c4d", 
+  "last_validated": "2025-05-07T14:30:00Z",
+  "expected_state": "compliant",
+  "failure_condition": "If NACLs or WAF rules are disabled, or Shield Advanced is not enabled for public endpoints"
+}

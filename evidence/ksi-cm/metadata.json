@@ -1,0 +1,23 @@
+{
+  "ksi_id": "ksi-cm",
+  "assertion": "Configuration changes are centrally managed through version-controlled infrastructure, reviewed for risk, and deployed through automated CI/CD pipelines.",
+  "description": "All infrastructure changes are implemented through Terraform and tracked in Git repositories. Change approvals and risk assessments are handled via weekly IT ops meetings and Jira tickets. Immutable deployments are used wherever possible, and scanning is enforced pre-deployment. Changes are logged and monitored post-deployment via AWS Config and CloudTrail.",
+  "fedramp_controls": ["CM-2", "CM-3", "CM-4", "CM-5", "CM-6", "CM-8", "RA-5"],
+  "evidence_files": [
+    "cloud_trial.png",
+    "immutable_infrastructure_pipeline_terraform.pdf",
+    "ci_cd_pipeline_testing_steps.pdf",
+    "configuration_management_plan.pdf",
+    "configuration_management_policy_and_procedures.pdf",
+    "example_it_ops_ticket.png",
+    "weekly_change_management_meeting_final.png",
+    "terraform_plan_output.txt"
+  ],
+  "source_system": "Terraform, GitHub, AWS Config, AWS CloudTrail, Jira",
+  "validation_method": "Changes validated via pull request workflows, CI/CD pipeline steps, and Jira audit trail. Immutable infrastructure and CloudTrail logs are used to confirm change execution and post-deployment state monitoring.",
+  "source_config": "terraform/modules/deployment/*.tf",
+  "source_commit": "bc8f71da", 
+  "last_validated": "2025-05-07T14:30:00Z",
+  "expected_state": "compliant",
+  "failure_condition": "If changes are made outside of version control, not tracked in Jira, or not reviewed via change board. AWS Config or CloudTrail missing log entries would also indicate failure."
+}
