@@ -119,7 +119,7 @@
           "evidence_reference": "evidence/ksi-sc/patch_management_strategy.pdf"
         }
       ],
-      "continuous_reporting": true
+      "continuous_reporting": partial
     },
 
 {
@@ -269,7 +269,7 @@
       "evidence_reference": "evidence/ksi-cm/weekly_change_management_meeting_final.png"
     }
   ],
-  "continuous_reporting": true
+  "continuous_reporting": partial
 },
 
 {
@@ -426,7 +426,7 @@
       "evidence_reference": "evidence/ksi-ir/quick_reference_irp_guide.pdf"
     }
   ],
-  "continuous_reporting": true
+  "continuous_reporting": partial
 }
   ],
   "data_schema_definition": {
