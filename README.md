@@ -11,15 +11,34 @@ This repository contains Meridian LMS’s structured submission for the **FedRAM
 
 ## 🔗 Live Trust Dashboard
 
-📍 **[FedRAMP 20x Trust Dashboard](https://meridian-knowledge-solutions.github.io/fedramp_20x_public_submission/)**
+📍 **[FedRAMP 20x Trust Dashboard](https://meridian-knowledge-solutions.github.io/fedramp_low-20x-pilot/)**
 
 This dashboard is:
-- ✅ Updated automatically on every commit to submission or evidence files
+- ✅ Automatically updated when `fedramp20x_submission.json` or private evidence artifacts are modified
 - 🔄 Pulls from `fedramp20x_submission.json` and `evidence_commit_metadata.json`
 - 🔍 Differentiates between CLI-based and static evidence
 - 🧭 Shows SHA and timestamp per artifact for trust traceability
 
 ---
+
+### ⚙️ How It Works
+
+This dashboard reflects a real-time view of Meridian’s compliance posture. It is powered by:
+
+- **GitHub Actions** in our private repo, which:
+  - Monitor changes to both evidence (`evidence/`, `evidence_v2/`) and the submission file
+  - Generate `evidence_commit_metadata.json` using Git commit history (SHA + timestamp)
+  - Push this metadata to the public repo on every update
+
+- **Client-side JavaScript**, which:
+  - Loads `fedramp20x_submission.json` and `evidence_commit_metadata.json`
+  - Displays KSI assertions with supporting evidence links
+  - Visually distinguishes between static and CLI-based evidence
+  - Highlights SHA and commit time for trust and audit traceability
+
+This system provides a transparent, integrity-preserving view of Meridian’s evidence posture — even while all raw artifacts remain protected in our private systems.
+
+
 
 ## 📁 Repository Structure
 
