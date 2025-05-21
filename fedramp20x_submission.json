@@ -16,69 +16,69 @@
     }
   },
   "ksi_validations": [
-{
-  "ksi_id": "KSI-CNA",
-  "title": "Cloud Native Architecture",
-  "validation_results": [
     {
-      "description": "Have Denial of Service (DoS) protection implemented for all services.",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-cna/aws_shield_dos_protection.pdf"
+      "ksi_id": "KSI-CNA",
+      "title": "Cloud Native Architecture",
+      "validation_results": [
+        {
+          "description": "Have Denial of Service (DoS) protection implemented for all services.",
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-cna/aws_shield_dos_protection.pdf"
+        },
+        {
+          "description": "Enforce application-layer traffic filtering and rate-based blocking using AWS WAF to mitigate web application attacks.",
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-cna/aws_waf_rule_set.png"
+        },
+        {
+          "description": "Configure firewalls/proxy servers to limit inbound and outbound traffic. (Outbound)",
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-cna/nacl_outbound_rules.png"
+        },
+        {
+          "description": "Configure firewalls/proxy servers to limit inbound and outbound traffic. (Inbound)",
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-cna/nacl_inbound_rules.png"
+        },
+        {
+          "description": "Use immutable infrastructure and serverless components with strictly defined functionality and privileges.",
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-cna/system_boundary_and_network_architecture.pdf"
+        },
+        {
+          "description": "Use immutable infrastructure and serverless components with strictly defined functionality and privileges. (data flow reference)",
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-cna/data_flow_diagram.pdf"
+        },
+        {
+          "description": "Design systems as logically segmented micro-services to minimize attack surface and lateral movement if compromised.",
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-cna/permission_sets.png"
+        },
+        {
+          "description": "Terraform plan output validating the network segmentation and infrastructure-as-code enforcement of private subnets, utility zones, and security groups for cloud-native architecture.",
+          "assertion": "false",
+          "evidence_reference": "evidence/ksi-cna/terraform_plan_output.txt",
+          "validation_method": "Missing evidence - auto-failed"
+        },
+        {
+          "description": "Use cloud-native virtual networks and related capabilities to enforce logical traffic flow controls.",
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-cna/vpc_traffic_flow_enforcement.pdf"
+        },
+        {
+          "description": "Execute continuous scanning of cloud native system components.",
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-cna/security_hub.pdf"
+        },
+        {
+          "description": "Use high availability design principles to maximize uptime.",
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-cna/network_diagram.pdf"
+        }
+      ],
+      "continuous_reporting": true
     },
-    {
-      "description": "Enforce application-layer traffic filtering and rate-based blocking using AWS WAF to mitigate web application attacks.",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-cna/aws_waf_rule_set.png"
-    },
-    {
-      "description": "Configure firewalls/proxy servers to limit inbound and outbound traffic. (Outbound)",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-cna/nacl_outbound_rules.png"
-    },
-    {
-      "description": "Configure firewalls/proxy servers to limit inbound and outbound traffic. (Inbound)",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-cna/nacl_inbound_rules.png"
-    },
-    {
-      "description": "Use immutable infrastructure and serverless components with strictly defined functionality and privileges.",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-cna/system_boundary_and_network_architecture.pdf"
-    },
-    {
-      "description": "Use immutable infrastructure and serverless components with strictly defined functionality and privileges. (data flow reference)",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-cna/data_flow_diagram.pdf"
-    },
-    {
-      "description": "Design systems as logically segmented micro-services to minimize attack surface and lateral movement if compromised.",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-cna/permission_sets.png"
-    },
-    {
-      "description": "Terraform plan output validating the network segmentation and infrastructure-as-code enforcement of private subnets, utility zones, and security groups for cloud-native architecture.",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-cna/terraform_plan_output.txt"
-    },
-    {
-      "description": "Use cloud-native virtual networks and related capabilities to enforce logical traffic flow controls.",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-cna/vpc_traffic_flow_enforcement.pdf"
-    },
-    {
-      "description": "Execute continuous scanning of cloud native system components.",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-cna/security_hub.pdf"
-    },
-    {
-      "description": "Use high availability design principles to maximize uptime.",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-cna/network_diagram.pdf"
-    }
-  ],
-  "continuous_reporting": true
-},
-    
     {
       "ksi_id": "KSI-SC",
       "title": "Service Configuration",
@@ -121,313 +121,314 @@
       ],
       "continuous_reporting": true
     },
-
-{
-  "ksi_id": "KSI-IAM",
-  "title": "Identity and Access Management",
-  "validation_results": [
     {
-      "description": "Enforce phishing-resistant multi-factor authentication (MFA) for all accounts.",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-iam/mfa_enforcement.png"
+      "ksi_id": "KSI-IAM",
+      "title": "Identity and Access Management",
+      "validation_results": [
+        {
+          "description": "Enforce phishing-resistant multi-factor authentication (MFA) for all accounts.",
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-iam/mfa_enforcement.png"
+        },
+        {
+          "description": "Enforce strong passwords aligned to NIST guidelines.",
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-iam/okta_password_requirements.png"
+        },
+        {
+          "description": "Enforce strong passwords aligned to NIST guidelines.",
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-iam/password_policy_nist_800_63b.pdf"
+        },
+        {
+          "description": "Use secure API authentication methods via industry standard protocols (OAuth 2.0, SAML).",
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-iam/saml.png"
+        },
+        {
+          "description": "Use a least-privileged, role-based, and just-in-time security model (via Permission Sets and SCPs).",
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-iam/permission_sets.png"
+        },
+        {
+          "description": "Enforce just-in-time, session-based administrative access using SSM Session Manager without persistent credentials or SSH.",
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-iam/ssm_session_manager_policy.png"
+        },
+        {
+          "description": "Enforce just-in-time, session-based administrative access using SSM Session Manager without persistent credentials or SSH.",
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-iam/ssm_instance_role.png"
+        }
+      ],
+      "continuous_reporting": true
     },
     {
-      "description": "Enforce strong passwords aligned to NIST guidelines.",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-iam/okta_password_requirements.png"
+      "ksi_id": "KSI-MLA",
+      "title": "Monitoring, Logging, and Auditing",
+      "validation_results": [
+        {
+          "description": "Operate a centralized SIEM or equivalent logging capability.",
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-mla/cloud_trail.png"
+        },
+        {
+          "description": "Detect anomalous behavior using continuous monitoring tools.",
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-mla/guard_duty.png"
+        },
+        {
+          "description": "Perform authenticated vulnerability scanning on EC2 instances using AWS Inspector, with continuous monitoring and SSM-based scan data collection.",
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-mla/inspector_node_running.png"
+        },
+        {
+          "description": "Perform authenticated vulnerability scanning on EC2 instances using AWS Inspector, with continuous monitoring and SSM-based scan data collection.",
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-mla/inspector_EC2.png"
+        },
+        {
+          "description": "Generate real-time alerts for suspicious activity.",
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-mla/sns_notifications.png"
+        },
+        {
+          "description": "Regularly review and audit system logs for compliance and security issues.",
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-mla/audit_log_review.pdf"
+        },
+        {
+          "description": "Maintain a vulnerability management process to identify and remediate system weaknesses.",
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-mla/vulnerability_management_process_final.pdf"
+        },
+        {
+          "description": "Terraform plan output providing the infrastructure baseline for monitoring and logging targets, including EC2 instance placement, security groups, and subnet configurations. This context supports configuration scanning and monitoring validation.",
+          "assertion": "false",
+          "evidence_reference": "evidence/ksi-mla/terraform_plan_output.txt",
+          "validation_method": "Missing evidence - auto-failed"
+        },
+        {
+          "description": "Perform Infrastructure as Code (IaC) and configuration scanning using Terraform static analysis to detect misconfigurations before deployment.",
+          "assertion": "false",
+          "evidence_reference": "evidence/ksi-mla/tfsec_scan_results.json",
+          "validation_method": "Missing evidence - auto-failed"
+        },
+        {
+          "description": "Centrally track remediation efforts for vulnerabilities using ticketing systems.",
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-mla/jira_fedramp_project.png"
+        }
+      ],
+      "continuous_reporting": true
     },
     {
-      "description": "Enforce strong passwords aligned to NIST guidelines.",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-iam/password_policy_nist_800_63b.pdf"
+      "ksi_id": "KSI-CM",
+      "title": "Configuration Management",
+      "validation_results": [
+        {
+          "description": "Log and monitor system modifications through cloud-native tooling.",
+          "assertion": "false",
+          "evidence_reference": "evidence/ksi-cm/cloud_trial.png",
+          "validation_method": "Missing evidence - auto-failed"
+        },
+        {
+          "description": "Execute changes through redeployment of version-controlled immutable infrastructure.",
+          "assertion": "false",
+          "evidence_reference": "evidence/ksi-cm/terraform_plan_output.txt",
+          "validation_method": "Missing evidence - auto-failed"
+        },
+        {
+          "description": "Implement automated testing and validation of changes prior to deployment.",
+          "assertion": "false",
+          "evidence_reference": "evidence/ksi-cm/ci_cd_pipeline_testing_steps.pdf",
+          "validation_method": "Missing evidence - auto-failed"
+        },
+        {
+          "description": "Document configuration management practices and change control procedures.",
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-cm/configuration_management_plan.pdf"
+        },
+        {
+          "description": "Capture of Terraform plan output showing baseline infrastructure configuration, including EC2 instance IDs, subnet placement, VPC layout, and security group assignments. This evidence supports change tracking, configuration control, and CI/CD enforcement of infrastructure baselines.",
+          "assertion": "false",
+          "evidence_reference": "evidence/ksi-cm/terraform_plan_output.txt",
+          "validation_method": "Missing evidence - auto-failed"
+        },
+        {
+          "description": "Enforce configuration baselines through organizational policies and SOPs.",
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-cm/configuration_management_policy_and_procedures.pdf"
+        },
+        {
+          "description": "Assess the risk and potential impact of any system change before implementation.",
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-cm/example_it_ops_ticket.png"
+        },
+        {
+          "description": "Review and approve system changes via regular change board meetings.",
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-cm/weekly_change_management_meeting_final.png"
+        }
+      ],
+      "continuous_reporting": true
     },
     {
-      "description": "Use secure API authentication methods via industry standard protocols (OAuth 2.0, SAML).",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-iam/saml.png"
+      "ksi_id": "KSI-PI",
+      "title": "Policy and Inventory",
+      "validation_results": [
+        {
+          "description": "Maintain an up-to-date asset inventory or codified infrastructure list.",
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-pi/aws_config_aggregator_dashboard.png"
+        },
+        {
+          "description": "Maintain security policies aligned to secure objectives and system functions.",
+          "assertion": "false",
+          "evidence_reference": "evidence/ksi-pi/security_policy_collection_repository.zip",
+          "validation_method": "Missing evidence - auto-failed"
+        },
+        {
+          "description": "Maintain a documented and published vulnerability disclosure program.",
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-pi/vulnerability_disclosure_program_final.pdf"
+        },
+        {
+          "description": "Embed secure-by-design principles within the system development lifecycle (SDLC).",
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-pi/sdlc_secure_by_design_document.pdf"
+        },
+        {
+          "description": "Document and implement methods to automatically evaluate control implementation success.",
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-pi/automated_control_validation_methods.pdf"
+        },
+        {
+          "description": "Designate dedicated personnel and budget for security operations and governance.",
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-pi/security_budget_allocation_and_roles.pdf"
+        }
+      ],
+      "continuous_reporting": false
     },
     {
-      "description": "Use a least-privileged, role-based, and just-in-time security model (via Permission Sets and SCPs).",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-iam/permission_sets.png"
+      "ksi_id": "KSI-3IR",
+      "title": "Third Party Information Resources",
+      "validation_results": [
+        {
+          "description": "Document and approve use of external services within the system boundary, limited to Elastic Cloud for non-sensitive metadata indexing.",
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-3ir/ssp_ac20_elastic_cloud_excerpt.png"
+        },
+        {
+          "description": "Reflect external system integrations in boundary and architecture diagrams.",
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-3ir/system_boundary_with_elastic.pdf"
+        },
+        {
+          "description": "Document and validate data flow paths for third-party service usage (Elastic metadata search).",
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-3ir/data_flow_elastic_metadata.pdf"
+        },
+        {
+          "description": "Declare outbound access restrictions to Elastic endpoints using Security Groups and NAT Gateway. Configuration is defined in Terraform.",
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-3ir/terraform_interconnection_controls.png"
+        },
+        {
+          "description": "Design includes GuardDuty and CloudTrail monitoring for outbound third-party traffic, scoped to Elastic Cloud endpoints. Validation will occur post-deployment.",
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-3ir/system_boundary_with_elastic.pdf"
+        },
+        {
+          "description": "Risk acceptance and system-level approval for Elastic usage is documented in SSP, justified by metadata-only scope and FedRAMP Moderate status of Elastic Cloud.",
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-3ir/ssp_ac20_elastic_cloud_excerpt.png"
+        },
+        {
+          "description": "FedRAMP Moderate authorization of Elastic Cloud is confirmed. Elastic is used in metadata-only mode without storing or transmitting CUI or PII.",
+          "assertion": "false",
+          "evidence_reference": "evidence/ksi-3ir/fedramp_moderate_vendor_list.xlsx",
+          "validation_method": "Missing evidence - auto-failed"
+        },
+        {
+          "description": "Generate and maintain a conditional SBOM for Elastic Cloud libraries expected to be used in production Low Mode, scoped to metadata-only use. SBOM is inactive unless system resources are deployed.",
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-3ir/sbom_including_elastic.json"
+        },
+        {
+          "description": "Vendor development practices and attestation are confirmed via Elastic public FedRAMP press release and authorization listing.",
+          "assertion": "false",
+          "evidence_reference": "evidence/ksi-3ir/elastic_attestation.pdf",
+          "validation_method": "Missing evidence - auto-failed"
+        }
+      ],
+      "continuous_reporting": false
     },
     {
-      "description": "Enforce just-in-time, session-based administrative access using SSM Session Manager without persistent credentials or SSH.",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-iam/ssm_session_manager_policy.png"
+      "ksi_id": "KSI-CE",
+      "title": "Cybersecurity Education",
+      "validation_results": [
+        {
+          "description": "Ensure all employees complete annual cybersecurity awareness training.",
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-ce/security_training_roster.png"
+        },
+        {
+          "description": "Deliver core training content focused on phishing, data protection, and acceptable use.",
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-ce/cyber_security_training.png"
+        },
+        {
+          "description": "Require specialized role-based training for privileged users.",
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-ce/fedramp_role_based.png"
+        }
+      ],
+      "continuous_reporting": false
     },
     {
-      "description": "Enforce just-in-time, session-based administrative access using SSM Session Manager without persistent credentials or SSH.",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-iam/ssm_instance_role.png"
+      "ksi_id": "KSI-IR",
+      "title": "Incident Response",
+      "validation_results": [
+        {
+          "description": "Document and maintain a contingency plan with defined roles and responsibilities.",
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-ir/contingency_plan.pdf"
+        },
+        {
+          "description": "Develop a test plan outlining objectives and scenarios for incident response.",
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-ir/contingency_test_plan.pdf"
+        },
+        {
+          "description": "Conduct incident response and contingency testing through tabletop exercises.",
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-ir/combined_tabletop_test_report_template.pdf"
+        },
+        {
+          "description": "Capture and retain evidence from completed contingency and incident response tests.",
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-ir/contingency_plan_test_report_example.pdf"
+        },
+        {
+          "description": "Maintain automated daily and monthly backup plans using AWS Backup to ensure recovery point objectives (RPO) are met.",
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-ir/backup_plans.png"
+        },
+        {
+          "description": "Perform system backups on a repeat basis.",
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-ir/backup_plans.png"
+        },
+        {
+          "description": "Provide operational personnel with quick-reference IR procedures and escalation contacts.",
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-ir/quick_reference_irp_guide.pdf"
+        }
+      ],
+      "continuous_reporting": false
     }
-  ],
-  "continuous_reporting": true
-},
-
-    {
-  "ksi_id": "KSI-MLA",
-  "title": "Monitoring, Logging, and Auditing",
-  "validation_results": [
-    {
-      "description": "Operate a centralized SIEM or equivalent logging capability.",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-mla/cloud_trail.png"
-    },
-    {
-      "description": "Detect anomalous behavior using continuous monitoring tools.",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-mla/guard_duty.png"
-    },
-    {
-     "description": "Perform authenticated vulnerability scanning on EC2 instances using AWS Inspector, with continuous monitoring and SSM-based scan data collection.",
-     "assertion": "true",
-     "evidence_reference": "evidence/ksi-mla/inspector_node_running.png"
-    },
-    {
-     "description": "Perform authenticated vulnerability scanning on EC2 instances using AWS Inspector, with continuous monitoring and SSM-based scan data collection.",
-     "assertion": "true",
-     "evidence_reference": "evidence/ksi-mla/inspector_EC2.png"
-    },
-    {
-      "description": "Generate real-time alerts for suspicious activity.",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-mla/sns_notifications.png"
-    },
-    {
-      "description": "Regularly review and audit system logs for compliance and security issues.",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-mla/audit_log_review.pdf"
-    },
-    {
-      "description": "Maintain a vulnerability management process to identify and remediate system weaknesses.",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-mla/vulnerability_management_process_final.pdf"
-    },
-    
-    {
-      "description": "Terraform plan output providing the infrastructure baseline for monitoring and logging targets, including EC2 instance placement, security groups, and subnet configurations. This context supports configuration scanning and monitoring validation.",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-mla/terraform_plan_output.txt"
-    },
-    {
-      "description": "Perform Infrastructure as Code (IaC) and configuration scanning using Terraform static analysis to detect misconfigurations before deployment.",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-mla/tfsec_scan_results.json"
-    },
-    {
-      "description": "Centrally track remediation efforts for vulnerabilities using ticketing systems.",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-mla/jira_fedramp_project.png"
-    }
-  ],
-  "continuous_reporting": true
-},
-
-{
-  "ksi_id": "KSI-CM",
-  "title": "Configuration Management",
-  "validation_results": [
-    {
-      "description": "Log and monitor system modifications through cloud-native tooling.",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-cm/cloud_trial.png"
-    },
-    {
-      "description": "Execute changes through redeployment of version-controlled immutable infrastructure.",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-cm/terraform_plan_output.txt"
-    },
-    {
-      "description": "Implement automated testing and validation of changes prior to deployment.",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-cm/ci_cd_pipeline_testing_steps.pdf"
-    },
-    {
-      "description": "Document configuration management practices and change control procedures.",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-cm/configuration_management_plan.pdf"
-    },
-    {
-      "description": "Capture of Terraform plan output showing baseline infrastructure configuration, including EC2 instance IDs, subnet placement, VPC layout, and security group assignments. This evidence supports change tracking, configuration control, and CI/CD enforcement of infrastructure baselines.",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-cm/terraform_plan_output.txt"
-    },
-    {
-      "description": "Enforce configuration baselines through organizational policies and SOPs.",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-cm/configuration_management_policy_and_procedures.pdf"
-    },
-    {
-      "description": "Assess the risk and potential impact of any system change before implementation.",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-cm/example_it_ops_ticket.png"
-    },
-    {
-      "description": "Review and approve system changes via regular change board meetings.",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-cm/weekly_change_management_meeting_final.png"
-    }
-  ],
-  "continuous_reporting": true
-},
-
-{
-  "ksi_id": "KSI-PI",
-  "title": "Policy and Inventory",
-  "validation_results": [
-    {
-      "description": "Maintain an up-to-date asset inventory or codified infrastructure list.",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-pi/aws_config_aggregator_dashboard.png"
-    },
-    {
-      "description": "Maintain security policies aligned to secure objectives and system functions.",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-pi/security_policy_collection_repository.zip"
-    },
-    {
-      "description": "Maintain a documented and published vulnerability disclosure program.",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-pi/vulnerability_disclosure_program_final.pdf"
-    },
-    {
-      "description": "Embed secure-by-design principles within the system development lifecycle (SDLC).",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-pi/sdlc_secure_by_design_document.pdf"
-    },
-    {
-      "description": "Document and implement methods to automatically evaluate control implementation success.",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-pi/automated_control_validation_methods.pdf"
-    },
-    {
-      "description": "Designate dedicated personnel and budget for security operations and governance.",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-pi/security_budget_allocation_and_roles.pdf"
-    }
-  ],
-  "continuous_reporting": false
-},
-
-    {
-  "ksi_id": "KSI-3IR",
-  "title": "Third Party Information Resources",
-  "validation_results": [
-    {
-      "description": "Document and approve use of external services within the system boundary, limited to Elastic Cloud for non-sensitive metadata indexing.",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-3ir/ssp_ac20_elastic_cloud_excerpt.png"
-    },
-    {
-      "description": "Reflect external system integrations in boundary and architecture diagrams.",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-3ir/system_boundary_with_elastic.pdf"
-    },
-    {
-      "description": "Document and validate data flow paths for third-party service usage (Elastic metadata search).",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-3ir/data_flow_elastic_metadata.pdf"
-    },
-    {
-      "description": "Declare outbound access restrictions to Elastic endpoints using Security Groups and NAT Gateway. Configuration is defined in Terraform.",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-3ir/terraform_interconnection_controls.png"
-    },
-    {
-      "description": "Design includes GuardDuty and CloudTrail monitoring for outbound third-party traffic, scoped to Elastic Cloud endpoints. Validation will occur post-deployment.",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-3ir/system_boundary_with_elastic.pdf"
-    },
-    {
-      "description": "Risk acceptance and system-level approval for Elastic usage is documented in SSP, justified by metadata-only scope and FedRAMP Moderate status of Elastic Cloud.",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-3ir/ssp_ac20_elastic_cloud_excerpt.png"
-    },
-    {
-      "description": "FedRAMP Moderate authorization of Elastic Cloud is confirmed. Elastic is used in metadata-only mode without storing or transmitting CUI or PII.",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-3ir/fedramp_moderate_vendor_list.xlsx"
-    },
-    {
-      "description": "Generate and maintain a conditional SBOM for Elastic Cloud libraries expected to be used in production Low Mode, scoped to metadata-only use. SBOM is inactive unless system resources are deployed.",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-3ir/sbom_including_elastic.json"
-    },
-    {
-      "description": "Vendor development practices and attestation are confirmed via Elastic public FedRAMP press release and authorization listing.",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-3ir/elastic_attestation.pdf"
-    }
-  ],
-  "continuous_reporting": false
-},
-
-{
-  "ksi_id": "KSI-CE",
-  "title": "Cybersecurity Education",
-  "validation_results": [
-    {
-      "description": "Ensure all employees complete annual cybersecurity awareness training.",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-ce/security_training_roster.png"
-    },
-    {
-      "description": "Deliver core training content focused on phishing, data protection, and acceptable use.",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-ce/cyber_security_training.png"
-    },
-    {
-      "description": "Require specialized role-based training for privileged users.",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-ce/fedramp_role_based.png"
-    }
-  ],
-  "continuous_reporting": false
-},
-
-{
-  "ksi_id": "KSI-IR",
-  "title": "Incident Response",
-  "validation_results": [
-    {
-      "description": "Document and maintain a contingency plan with defined roles and responsibilities.",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-ir/contingency_plan.pdf"
-    },
-    {
-      "description": "Develop a test plan outlining objectives and scenarios for incident response.",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-ir/contingency_test_plan.pdf"
-    },
-    {
-      "description": "Conduct incident response and contingency testing through tabletop exercises.",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-ir/combined_tabletop_test_report_template.pdf"
-    },
-    {
-      "description": "Capture and retain evidence from completed contingency and incident response tests.",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-ir/contingency_plan_test_report_example.pdf"
-    },
-    {
-      "description": "Maintain automated daily and monthly backup plans using AWS Backup to ensure recovery point objectives (RPO) are met.",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-ir/backup_plans.png"
-    },
-    {
-      "description": "Perform system backups on a repeat basis.",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-ir/backup_plans.png"
-    },
-    {
-      "description": "Provide operational personnel with quick-reference IR procedures and escalation contacts.",
-      "assertion": "true",
-      "evidence_reference": "evidence/ksi-ir/quick_reference_irp_guide.pdf"
-    }
-  ],
-  "continuous_reporting": false
-}
   ],
   "data_schema_definition": {
     "field_definitions": {
