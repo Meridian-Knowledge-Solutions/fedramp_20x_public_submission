@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FedRAMP 20x Trust Dashboard</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background-color: #f8fafc;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #1a1a1a;
+    }
+    .timestamp, .filter {
+      text-align: center;
+      font-size: 0.9em;
+      color: #555;
+      margin-bottom: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    th, td {
+      padding: 12px 16px;
+      border: 1px solid #d0d7de;
+    }
+    th {
+      background-color: #004080;
+      color: white;
+    }
+    tr:nth-child(even) {
+      background-color: #f2f6fb;
+    }
+    tr:hover {
+      background-color: #e6f0ff;
+    }
+    a {
+      color: #0066cc;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .status {
+      font-size: 1.2em;
+    }
+  </style>
+</head>
+<body>
+  <h1>FedRAMP 20x Trust Dashboard</h1>
+  <div class="timestamp">Last updated: <span id="lastUpdated">Loading...</span></div>
+  <div class="filter">
+    <label><input type="checkbox" id="filterFailed" onchange="toggleFailures()"> Show only ❌ failed validations</label>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>KSI ID</th>
+        <th>KSI Title</th>
+        <th>Validation Description</th>
+        <th>Assertion</th>
+        <th>Evidence</th>
+      </tr>
+    </thead>
+    <tbody id="dashboardBody"></tbody>
+  </table>
+
+  <script>
+    document.getElementById("lastUpdated").textContent = new Date().toLocaleString();
+
+    const JSON_PATH = "fedramp20x_submission.json";  // Local to the same repo
+
+    async function loadDashboardData() {
+      try {
+        const response = await fetch(JSON_PATH);
+        const data = await response.json();
+        renderDashboard(data);
+      } catch (error) {
+        alert("Error loading dashboard data: " + error);
+      }
+    }
+
+    function renderDashboard(data) {
+      const tbody = document.getElementById("dashboardBody");
+      tbody.innerHTML = "";
+      data.ksi_validations.forEach(ksi => {
+        ksi.validation_results.forEach(result => {
+          const row = document.createElement('tr');
+          row.setAttribute('data-passed', result.assertion === true || result.assertion === "true");
+
+          row.innerHTML = `
+            <td>${ksi.ksi_id}</td>
+            <td>${ksi.title}</td>
+            <td>${result.description}</td>
+            <td><span class="status">${result.assertion === true || result.assertion === "true" ? '✅' : '❌'}</span></td>
+            <td>${result.evidence_reference ? `<a href="${result.evidence_reference}" target="_blank">View</a>` : 'N/A'}</td>
+          `;
+          tbody.appendChild(row);
+        });
+      });
+    }
+
+    function toggleFailures() {
+      const checkbox = document.getElementById("filterFailed");
+      const rows = document.querySelectorAll("#dashboardBody tr");
+      rows.forEach(row => {
+        const passed = row.getAttribute("data-passed") === "true";
+        row.style.display = checkbox.checked && passed ? "none" : "";
+      });
+    }
+
+    loadDashboardData();
+  </script>
+</body>
+</html>
