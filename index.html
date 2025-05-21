@@ -200,10 +200,7 @@
           if (shortSHA && ts) {
             const utcTime = new Date(ts);
             const localTime = utcTime.toLocaleString();
-            traceCell.innerHTML = `
-              SHA: ${shortSHA}<br/>
-              ⏱ UTC: ${ts}<br/>
-              🕒 Local: ${localTime}`;
+            traceCell.innerHTML = `🔹 SHA: ${shortSHA}<br/>⏱ UTC: ${ts.slice(0, 16).replace("T", " ")}<br/>🕒 Local: ${localTime}`;
           } else {
             traceCell.innerHTML = "—";
           }
