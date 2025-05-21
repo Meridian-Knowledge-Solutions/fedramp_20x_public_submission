@@ -2,7 +2,7 @@
   "csp_information": {
     "organization_name": "Meridian LMS",
     "system_name": "Meridian LMS SaaS Platform",
-    "deployment_environment": "AWS Commericial (east)",
+    "deployment_environment": "AWS GovCloud (US)",
     "submission_date": "2025-05-XX",
     "contact_email": "aburroughs@meridianks.com",
     "submission_version": "1.0"
@@ -53,7 +53,7 @@
     {
       "description": "Design systems as logically segmented micro-services to minimize attack surface and lateral movement if compromised.",
       "assertion": "true",
-      "evidence_reference": "evidence/ksi-cna/permission_sets.pdf"
+      "evidence_reference": "evidence/ksi-cna/permission_sets.png"
     },
     {
       "description": "Terraform plan output validating the network segmentation and infrastructure-as-code enforcement of private subnets, utility zones, and security groups for cloud-native architecture.",
@@ -231,12 +231,12 @@
     {
       "description": "Log and monitor system modifications through cloud-native tooling.",
       "assertion": "true",
-      "evidence_reference": "evidence/ksi-cm/cloud_trail.png"
+      "evidence_reference": "evidence/ksi-cm/cloud_trial.png"
     },
     {
       "description": "Execute changes through redeployment of version-controlled immutable infrastructure.",
       "assertion": "true",
-      "evidence_reference": "evidence/ksi-cm/immutable_infrastructure_pipeline_terraform.pdf"
+      "evidence_reference": "evidence/ksi-cm/terraform_plan_output.txt"
     },
     {
       "description": "Implement automated testing and validation of changes prior to deployment.",
@@ -426,7 +426,7 @@
       "evidence_reference": "evidence/ksi-ir/quick_reference_irp_guide.pdf"
     }
   ],
-  "continuous_reporting": true
+  "continuous_reporting": false
 }
   ],
   "data_schema_definition": {
