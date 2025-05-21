@@ -38,8 +38,6 @@ This dashboard reflects a real-time view of Meridian’s compliance posture. It 
 
 This system provides a transparent, integrity-preserving view of Meridian’s evidence posture — even while all raw artifacts remain protected in our private systems.
 
-
-
 ## 📁 Repository Structure
 
 ```
@@ -111,6 +109,22 @@ Future enhancements will expand:
 - Terraform plan validation
 - Inspector and Config compliance snapshots
 - Automation coverage across additional KSIs
+
+---
+
+## ✨ New Enhancements for Phase Two Transparency
+
+### 🧠 Auto-Failing Assertions for Missing Evidence
+If a referenced evidence file does not exist or has no commit metadata, our system:
+- Automatically sets `"assertion": "false"`
+- Adds a `"validation_method": "Missing evidence - auto-failed"` tag
+- Keeps the submission.json accurate and trustworthy at all times
+
+### 🛠 Public Feedback Loop via GitHub Issues
+If an assertion fails and no evidence is present:
+- The dashboard replaces the "View" link with a **“Request Clarification”** link
+- This link pre-fills a GitHub issue template so 3PAOs or reviewers can raise questions or concerns
+- Enables continuous public participation in the authorization process — a FedRAMP 20x first
 
 ---
 
