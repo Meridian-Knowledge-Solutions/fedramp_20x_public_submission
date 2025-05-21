@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,17 +7,30 @@
     body {
       font-family: 'Segoe UI', Tahoma, sans-serif;
       background-color: #f8fafc;
+      color: #222;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #004080;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    .banner {
+      background: #e0f2fe;
+      padding: 10px;
+      text-align: center;
+      font-size: 0.95em;
+      color: #0369a1;
+      font-weight: 500;
+    }
+    .container {
       padding: 20px;
     }
-    h1 {
+    .filter {
       text-align: center;
-      color: #1a1a1a;
-    }
-    .timestamp, .filter {
-      text-align: center;
-      font-size: 0.9em;
-      color: #555;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }
     table {
       width: 100%;
@@ -33,7 +45,7 @@
       border: 1px solid #d0d7de;
     }
     th {
-      background-color: #004080;
+      background-color: #1e3a8a;
       color: white;
     }
     tr:nth-child(even) {
@@ -42,6 +54,19 @@
     tr:hover {
       background-color: #e6f0ff;
     }
+    .status {
+      font-size: 1.2em;
+    }
+    .meta {
+      font-size: 0.8em;
+      color: #555;
+    }
+    .icon-cli::before {
+      content: "🟢 ";
+    }
+    .icon-static::before {
+      content: "📄 ";
+    }
     a {
       color: #0066cc;
       text-decoration: none;
@@ -49,75 +74,100 @@
     a:hover {
       text-decoration: underline;
     }
-    .status {
-      font-size: 1.2em;
-    }
   </style>
 </head>
 <body>
-  <h1>FedRAMP 20x Trust Dashboard</h1>
-  <div class="timestamp">Last updated: <span id="lastUpdated">Loading...</span></div>
-  <div class="filter">
-    <label><input type="checkbox" id="filterFailed" onchange="toggleFailures()"> Show only ❌ failed validations</label>
+  <header>
+    <h1>FedRAMP 20x Trust Dashboard</h1>
+  </header>
+  <div class="banner">
+    Transparency-first implementation of the FedRAMP 20x pilot. Last metadata update: <span id="lastUpdated">loading...</span>
   </div>
-  <table>
-    <thead>
-      <tr>
-        <th>KSI ID</th>
-        <th>KSI Title</th>
-        <th>Validation Description</th>
-        <th>Assertion</th>
-        <th>Evidence</th>
-      </tr>
-    </thead>
-    <tbody id="dashboardBody"></tbody>
-  </table>
+  <div class="container">
+    <div class="filter">
+      <label><input type="checkbox" id="filterFailed" onchange="toggleFailures()"> Show only ❌ failed validations</label>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>KSI ID</th>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Assertion</th>
+          <th>Evidence</th>
+        </tr>
+      </thead>
+      <tbody id="dashboardBody"></tbody>
+    </table>
+  </div>
 
   <script>
-    document.getElementById("lastUpdated").textContent = new Date().toLocaleString();
+    const SUBMISSION_URL = "https://raw.githubusercontent.com/Meridian-Knowledge-Solutions/fedramp_20x_public_submission/main/fedramp20x_submission.json";
+    const METADATA_URL = "https://raw.githubusercontent.com/Meridian-Knowledge-Solutions/fedramp_20x_public_submission/main/evidence_commit_metadata.json";
 
-    const JSON_PATH = "fedramp20x_submission.json";  // Local to the same repo
-
-    async function loadDashboardData() {
-      try {
-        const response = await fetch(JSON_PATH);
-        const data = await response.json();
-        renderDashboard(data);
-      } catch (error) {
-        alert("Error loading dashboard data: " + error);
-      }
+    async function loadDashboard() {
+      const [submissionRes, metadataRes] = await Promise.all([
+        fetch(SUBMISSION_URL),
+        fetch(METADATA_URL)
+      ]);
+      const submissionData = await submissionRes.json();
+      const metadata = await metadataRes.json();
+      renderDashboard(submissionData, metadata);
     }
 
-    function renderDashboard(data) {
+    function renderDashboard(data, metadata) {
       const tbody = document.getElementById("dashboardBody");
+      const updatedTimestamps = [];
+
       tbody.innerHTML = "";
       data.ksi_validations.forEach(ksi => {
         ksi.validation_results.forEach(result => {
           const row = document.createElement('tr');
-          row.setAttribute('data-passed', result.assertion === true || result.assertion === "true");
+          const passed = result.assertion === true || result.assertion === "true";
+          row.setAttribute('data-passed', passed);
+
+          const ref = result.evidence_reference || "";
+          const meta = metadata[ref] || {};
+          const shortSHA = meta.commit_sha ? meta.commit_sha.substring(0, 7) : null;
+          const ts = meta.timestamp || null;
+
+          if (ts) updatedTimestamps.push(ts);
+
+          const evidenceType = result.evidence_type === "cli_output" ? "icon-cli" : "icon-static";
 
           row.innerHTML = `
             <td>${ksi.ksi_id}</td>
             <td>${ksi.title}</td>
             <td>${result.description}</td>
-            <td><span class="status">${result.assertion === true || result.assertion === "true" ? '✅' : '❌'}</span></td>
-            <td>${result.evidence_reference ? `<a href="${result.evidence_reference}" target="_blank">View</a>` : 'N/A'}</td>
+            <td><span class="status">${passed ? '✅' : '❌'}</span></td>
+            <td>
+              <span class="${evidenceType}"></span>
+              ${ref ? `<a href="${ref}" target="_blank">View</a>` : 'N/A'}
+              ${shortSHA ? `<div class="meta">SHA: ${shortSHA}<br/>⏱ ${ts}</div>` : ''}
+            </td>
           `;
           tbody.appendChild(row);
         });
       });
+
+      // Update banner timestamp
+      if (updatedTimestamps.length > 0) {
+        const latest = updatedTimestamps.sort().reverse()[0];
+        document.getElementById("lastUpdated").textContent = new Date(latest).toLocaleString();
+      } else {
+        document.getElementById("lastUpdated").textContent = "No metadata found";
+      }
     }
 
     function toggleFailures() {
-      const checkbox = document.getElementById("filterFailed");
-      const rows = document.querySelectorAll("#dashboardBody tr");
-      rows.forEach(row => {
+      const showOnlyFailed = document.getElementById("filterFailed").checked;
+      document.querySelectorAll("#dashboardBody tr").forEach(row => {
         const passed = row.getAttribute("data-passed") === "true";
-        row.style.display = checkbox.checked && passed ? "none" : "";
+        row.style.display = showOnlyFailed && passed ? "none" : "";
       });
     }
 
-    loadDashboardData();
+    loadDashboard();
   </script>
 </body>
 </html>
