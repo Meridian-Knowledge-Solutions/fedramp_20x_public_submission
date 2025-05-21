@@ -144,7 +144,9 @@
           let evidenceHTML = '';
           if (ref && shortSHA) {
             if (isStatic) {
-              evidenceHTML = `<span class="${evidenceType}"></span><span class="locked" title="Evidence restricted to authorized reviewers.">🔒 Evidence restricted</span>`;
+              evidenceHTML = `<span class="${evidenceType}"></span>
+       <span class="locked" title="Evidence restricted. Submit access request if needed.">🔒 Evidence restricted</span><br/>
+       <a class="locked" href="https://github.com/Meridian-Knowledge-Solutions/fedramp_20x_public_submission/issues/new?title=Request+Access:+${ksi.ksi_id}&body=Request+access+to:+${ref}" target="_blank">Request Access</a>`;
             } else {
               evidenceHTML = `<span class="${evidenceType}"></span><a href="${ref}" target="_blank">View</a>
                               <div class="meta">SHA: ${shortSHA}<br/>⏱ ${ts}</div>`;
