@@ -125,11 +125,6 @@
   </div>
 
   <script>
-    // FedRAMP 20x Dashboard Script
-    // - Loads submission and evidence metadata JSON
-    // - Renders validations with SHA + timestamps
-    // - Applies filters for failed status and KSI ID
-    // - Shows tooltips, locked states, and issue request links
     const SUBMISSION_URL = "https://raw.githubusercontent.com/Meridian-Knowledge-Solutions/fedramp_20x_public_submission/main/fedramp20x_submission.json";
     const METADATA_URL = "https://raw.githubusercontent.com/Meridian-Knowledge-Solutions/fedramp_20x_public_submission/main/evidence_commit_metadata.json";
 
@@ -140,7 +135,8 @@
       ]);
       const submissionData = await submissionRes.json();
       const metadata = await metadataRes.json();
-      renderDashboard(submissionData, metadata);
+      // Begin rendering rows with fallback
+      try { renderDashboard(submissionData, metadata); } catch (e) { document.getElementById('summaryStats').textContent = '❌ Error loading dashboard'; console.error(e); }
     }
 
     function renderDashboard(data, metadata) {
@@ -149,7 +145,6 @@
       let passedCount = 0, failedCount = 0, restrictedCount = 0;
 
       const updatedTimestamps = [];
-      // Clear existing dashboard rows
       tbody.innerHTML = "";
 
       data.ksi_validations.forEach(ksi => {
@@ -218,9 +213,9 @@
       });
 
       // Populate filter
-      // Populate the dropdown filter with unique KSI IDs
       const filter = document.getElementById("ksiFilter");
-      ksiSet.forEach(k => {
+      // Populate dropdown safely
+      Array.from(ksiSet).sort().forEach(k => {
         const opt = document.createElement("option");
         opt.value = k;
         opt.textContent = k;
@@ -228,7 +223,6 @@
       });
 
       // Summary counts
-      // Display dashboard summary stats
       document.getElementById("summaryStats").textContent =
         `Validations: ${passedCount + failedCount} | ✅ Passed: ${passedCount} | ❌ Failed: ${failedCount} | 🔒 Restricted: ${restrictedCount}`;
 
@@ -242,7 +236,7 @@
 
     function toggleFailures() {
       const showOnlyFailed = document.getElementById("filterFailed").checked;
-      // Iterate through each dashboard row and apply filter
+      document.querySelectorAll("#dashboardBody tr").forEach(row => {
         const passed = row.getAttribute("data-passed") === "true";
         row.style.display = showOnlyFailed && passed ? "none" : "";
       });
@@ -250,7 +244,7 @@
 
     function applyKsiFilter() {
       const selected = document.getElementById("ksiFilter").value;
-      // Iterate through each dashboard row and apply filter
+      document.querySelectorAll("#dashboardBody tr").forEach(row => {
         const rowKsi = row.getAttribute("data-ksi");
         row.style.display = !selected || rowKsi === selected ? "" : "none";
       });
