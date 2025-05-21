@@ -172,7 +172,7 @@
     {
       "description": "Operate a centralized SIEM or equivalent logging capability.",
       "assertion": "true",
-      "evidence_reference": "evidence/ksi-mla/cloud_trial.png"
+      "evidence_reference": "evidence/ksi-mla/cloud_trail.png"
     },
     {
       "description": "Detect anomalous behavior using continuous monitoring tools.",
@@ -231,7 +231,7 @@
     {
       "description": "Log and monitor system modifications through cloud-native tooling.",
       "assertion": "true",
-      "evidence_reference": "evidence/ksi-cm/cloud_trial.png"
+      "evidence_reference": "evidence/ksi-cm/cloud_trail.png"
     },
     {
       "description": "Execute changes through redeployment of version-controlled immutable infrastructure.",
@@ -289,7 +289,7 @@
     {
       "description": "Maintain a documented and published vulnerability disclosure program.",
       "assertion": "true",
-      "evidence_reference": "evidence/ksi-pi/vulnerability_disclosure_program.pdf"
+      "evidence_reference": "evidence/ksi-pi/vulnerability_disclosure_program_final.pdf"
     },
     {
       "description": "Embed secure-by-design principles within the system development lifecycle (SDLC).",
@@ -317,7 +317,7 @@
     {
       "description": "Document and approve use of external services within the system boundary, limited to Elastic Cloud for non-sensitive metadata indexing.",
       "assertion": "true",
-      "evidence_reference": "evidence/ksi-3ir/ssp_ac20_elastic_cloud_excerpt.pdf"
+      "evidence_reference": "evidence/ksi-3ir/ssp_ac20_elastic_cloud_excerpt.png"
     },
     {
       "description": "Reflect external system integrations in boundary and architecture diagrams.",
@@ -342,7 +342,7 @@
     {
       "description": "Risk acceptance and system-level approval for Elastic usage is documented in SSP, justified by metadata-only scope and FedRAMP Moderate status of Elastic Cloud.",
       "assertion": "true",
-      "evidence_reference": "evidence/ksi-3ir/ssp_ac20_elastic_cloud_excerpt.pdf"
+      "evidence_reference": "evidence/ksi-3ir/ssp_ac20_elastic_cloud_excerpt.png"
     },
     {
       "description": "FedRAMP Moderate authorization of Elastic Cloud is confirmed. Elastic is used in metadata-only mode without storing or transmitting CUI or PII.",
