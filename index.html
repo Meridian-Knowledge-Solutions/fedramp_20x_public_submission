@@ -135,7 +135,7 @@
           const meta = metadata[ref] || {};
           const shortSHA = meta.commit_sha ? meta.commit_sha.substring(0, 7) : null;
           const ts = meta.timestamp || null;
-          const isStatic = result.evidence_type === "static";
+          const isStatic = !result.evidence_type || result.evidence_type === "static";
 
           if (ts) updatedTimestamps.push(ts);
 
