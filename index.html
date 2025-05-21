@@ -75,6 +75,10 @@
     a:hover {
       text-decoration: underline;
     }
+    .locked {
+      color: #888;
+      font-size: 0.9em;
+    }
   </style>
 </head>
 <body>
@@ -131,6 +135,7 @@
           const meta = metadata[ref] || {};
           const shortSHA = meta.commit_sha ? meta.commit_sha.substring(0, 7) : null;
           const ts = meta.timestamp || null;
+          const isStatic = result.evidence_type === "static";
 
           if (ts) updatedTimestamps.push(ts);
 
@@ -138,8 +143,12 @@
 
           let evidenceHTML = '';
           if (ref && shortSHA) {
-            evidenceHTML = `<span class="${evidenceType}"></span><a href="${ref}" target="_blank">View</a>
-                            <div class="meta">SHA: ${shortSHA}<br/>⏱ ${ts}</div>`;
+            if (isStatic) {
+              evidenceHTML = `<span class="${evidenceType}"></span><span class="locked" title="Evidence restricted to authorized reviewers.">🔒 Evidence restricted</span>`;
+            } else {
+              evidenceHTML = `<span class="${evidenceType}"></span><a href="${ref}" target="_blank">View</a>
+                              <div class="meta">SHA: ${shortSHA}<br/>⏱ ${ts}</div>`;
+            }
           } else if (ref && !shortSHA && !passed) {
             const encodedTitle = encodeURIComponent(`Missing Evidence: ${ksi.ksi_id}`);
             const encodedBody = encodeURIComponent(`Assertion failed for:
