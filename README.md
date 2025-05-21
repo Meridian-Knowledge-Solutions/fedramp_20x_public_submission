@@ -11,7 +11,7 @@ This repository contains Meridian LMS’s structured submission for the **FedRAM
 
 ## 🔗 Live Trust Dashboard
 
-📍 **[FedRAMP 20x Trust Dashboard](https:/meridian-knowledge-solutions.github.io/fedramp_20x_public_submission/)**
+📍 **[FedRAMP 20x Trust Dashboard](https://meridian-knowledge-solutions.github.io/fedramp_20x_public_submission/)**
 
 This dashboard is:
 - ✅ Updated automatically on every commit to submission or evidence files
