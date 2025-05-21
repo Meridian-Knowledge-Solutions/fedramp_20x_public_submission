@@ -17,6 +17,8 @@ This dashboard is:
 - ✅ Automatically updated when `fedramp20x_submission.json` or private evidence artifacts are modified
 - 🔄 Pulls from `fedramp20x_submission.json` and `evidence_commit_metadata.json`
 - 🔍 Differentiates between CLI-based and static evidence
+- 🔒 Static evidence is restricted with a lock icon and tooltip
+- 📨 Missing or restricted evidence can be clarified via a **Request Access** GitHub issue link
 - 🧭 Shows SHA and timestamp per artifact for trust traceability
 
 ---
@@ -34,7 +36,10 @@ This dashboard reflects a real-time view of Meridian’s compliance posture. It 
   - Loads `fedramp20x_submission.json` and `evidence_commit_metadata.json`
   - Displays KSI assertions with supporting evidence links
   - Visually distinguishes between static and CLI-based evidence
+  - Renders lock indicators with tooltip and access request links for restricted artifacts
   - Highlights SHA and commit time for trust and audit traceability
+
+---
 
 This system provides a transparent, integrity-preserving view of Meridian’s evidence posture — even while all raw artifacts remain protected in our private systems.
 
