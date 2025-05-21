@@ -8,7 +8,6 @@
     body {
       font-family: 'Segoe UI', Tahoma, sans-serif;
       background-color: #f8fafc;
-      color: #222;
       margin: 0;
       padding: 0;
     }
@@ -26,12 +25,24 @@
       color: #0369a1;
       font-weight: 500;
     }
+    .summary {
+      text-align: center;
+      font-weight: 500;
+      margin: 10px 0;
+      color: #222;
+    }
     .container {
       padding: 20px;
     }
     .filter {
-      text-align: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       margin-bottom: 10px;
+    }
+    select {
+      padding: 6px;
+      font-size: 0.9em;
     }
     table {
       width: 100%;
@@ -88,9 +99,15 @@
   <div class="banner">
     Transparency-first implementation of the FedRAMP 20x pilot. Last metadata update: <span id="lastUpdated">loading...</span>
   </div>
+  <div class="summary" id="summaryStats">Loading validation summary...</div>
   <div class="container">
     <div class="filter">
       <label><input type="checkbox" id="filterFailed" onchange="toggleFailures()"> Show only ❌ failed validations</label>
+      <label>Filter by KSI:
+        <select id="ksiFilter" onchange="applyKsiFilter()">
+          <option value="">All KSIs</option>
+        </select>
+      </label>
     </div>
     <table>
       <thead>
@@ -100,6 +117,7 @@
           <th>Description</th>
           <th>Assertion</th>
           <th>Evidence</th>
+          <th>Evidence Trace</th>
         </tr>
       </thead>
       <tbody id="dashboardBody"></tbody>
@@ -107,6 +125,11 @@
   </div>
 
   <script>
+    // FedRAMP 20x Dashboard Script
+    // - Loads submission and evidence metadata JSON
+    // - Renders validations with SHA + timestamps
+    // - Applies filters for failed status and KSI ID
+    // - Shows tooltips, locked states, and issue request links
     const SUBMISSION_URL = "https://raw.githubusercontent.com/Meridian-Knowledge-Solutions/fedramp_20x_public_submission/main/fedramp20x_submission.json";
     const METADATA_URL = "https://raw.githubusercontent.com/Meridian-Knowledge-Solutions/fedramp_20x_public_submission/main/evidence_commit_metadata.json";
 
@@ -122,14 +145,21 @@
 
     function renderDashboard(data, metadata) {
       const tbody = document.getElementById("dashboardBody");
-      const updatedTimestamps = [];
+      const ksiSet = new Set();
+      let passedCount = 0, failedCount = 0, restrictedCount = 0;
 
+      const updatedTimestamps = [];
+      // Clear existing dashboard rows
       tbody.innerHTML = "";
+
       data.ksi_validations.forEach(ksi => {
+        ksiSet.add(ksi.ksi_id);
+
         ksi.validation_results.forEach(result => {
-          const row = document.createElement('tr');
+          const row = document.createElement("tr");
           const passed = result.assertion === true || result.assertion === "true";
-          row.setAttribute('data-passed', passed);
+          row.setAttribute("data-passed", passed);
+          row.setAttribute("data-ksi", ksi.ksi_id);
 
           const ref = result.evidence_reference || "";
           const meta = metadata[ref] || {};
@@ -138,18 +168,18 @@
           const isStatic = !result.evidence_type || result.evidence_type === "static";
 
           if (ts) updatedTimestamps.push(ts);
+          if (!passed) failedCount++;
+          else passedCount++;
 
           const evidenceType = result.evidence_type === "cli_output" ? "icon-cli" : "icon-static";
-
-          let evidenceHTML = '';
+          let evidenceHTML = "";
           if (ref && shortSHA) {
             if (isStatic) {
-              evidenceHTML = `<span class="${evidenceType}"></span>
-       <span class="locked" title="Evidence restricted. Submit access request if needed.">🔒 Evidence restricted</span><br/>
-       <a class="locked" href="https://github.com/Meridian-Knowledge-Solutions/fedramp_20x_public_submission/issues/new?title=Request+Access:+${ksi.ksi_id}&body=Request+access+to:+${ref}" target="_blank">Request Access</a>`;
+              evidenceHTML = `<span class="${evidenceType}"></span><span class="locked" title="Evidence restricted. Submit access request if needed.">🔒 Evidence restricted</span><br/>
+              <a class="locked" href="https://github.com/Meridian-Knowledge-Solutions/fedramp_20x_public_submission/issues/new?title=Request+Access:+${ksi.ksi_id}&body=Request+access+to:+${ref}" target="_blank">Request Access</a>`;
+              restrictedCount++;
             } else {
-              evidenceHTML = `<span class="${evidenceType}"></span><a href="${ref}" target="_blank">View</a>
-                              <div class="meta">SHA: ${shortSHA}<br/>⏱ ${ts}</div>`;
+              evidenceHTML = `<span class="${evidenceType}" title="${result.validation_method || 'CLI Validated'}"></span><a href="${ref}" target="_blank">View</a>`;
             }
           } else if (ref && !shortSHA && !passed) {
             const encodedTitle = encodeURIComponent(`Missing Evidence: ${ksi.ksi_id}`);
@@ -169,11 +199,38 @@
             <td>${ksi.title}</td>
             <td>${result.description}</td>
             <td><span class="status">${passed ? '✅' : '❌'}</span></td>
-            <td>${evidenceHTML}</td>
-          `;
+            <td>${evidenceHTML}</td>`;
+
+          const traceCell = document.createElement("td");
+          if (shortSHA && ts) {
+            const utcTime = new Date(ts);
+            const localTime = utcTime.toLocaleString();
+            traceCell.innerHTML = `
+              SHA: ${shortSHA}<br/>
+              ⏱ UTC: ${ts}<br/>
+              🕒 Local: ${localTime}`;
+          } else {
+            traceCell.innerHTML = "—";
+          }
+          row.appendChild(traceCell);
           tbody.appendChild(row);
         });
       });
+
+      // Populate filter
+      // Populate the dropdown filter with unique KSI IDs
+      const filter = document.getElementById("ksiFilter");
+      ksiSet.forEach(k => {
+        const opt = document.createElement("option");
+        opt.value = k;
+        opt.textContent = k;
+        filter.appendChild(opt);
+      });
+
+      // Summary counts
+      // Display dashboard summary stats
+      document.getElementById("summaryStats").textContent =
+        `Validations: ${passedCount + failedCount} | ✅ Passed: ${passedCount} | ❌ Failed: ${failedCount} | 🔒 Restricted: ${restrictedCount}`;
 
       if (updatedTimestamps.length > 0) {
         const latest = updatedTimestamps.sort().reverse()[0];
@@ -185,9 +242,17 @@
 
     function toggleFailures() {
       const showOnlyFailed = document.getElementById("filterFailed").checked;
-      document.querySelectorAll("#dashboardBody tr").forEach(row => {
+      // Iterate through each dashboard row and apply filter
         const passed = row.getAttribute("data-passed") === "true";
         row.style.display = showOnlyFailed && passed ? "none" : "";
+      });
+    }
+
+    function applyKsiFilter() {
+      const selected = document.getElementById("ksiFilter").value;
+      // Iterate through each dashboard row and apply filter
+        const rowKsi = row.getAttribute("data-ksi");
+        row.style.display = !selected || rowKsi === selected ? "" : "none";
       });
     }
 
