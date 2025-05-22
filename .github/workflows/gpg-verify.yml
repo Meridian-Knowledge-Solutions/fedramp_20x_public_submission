@@ -16,32 +16,42 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
+      # Step 1: Checkout repo with full history
+      - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 0  # Required for full Git log access
 
-      - name: Get current commit SHA
+      # Step 2: Get current commit SHA
+      - name: Capture current commit SHA
         id: commit_sha
         run: echo "sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
 
-      - name: Verify commit and write trusted_attestations.json
+      # Step 3: Validate signature and log metadata
+      - name: Verify commit signature and generate trusted_attestations.json
         run: |
-          TRUSTED_KEYS=("6C8481C18765D19D")
-          SIGNER_NAME="fortetroy"
-          DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          TRUSTED_KEYS=("6C8481C18765D19D")  # List of trusted GPG key IDs
+          SIGNER_NAME="fortetroy"            # Friendly name for signer (displayed in dashboard)
+          DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")  # ISO timestamp
           COMMIT_SHA="${{ steps.commit_sha.outputs.sha }}"
+
+          # Start JSON file
           > trusted_attestations.json
           echo '{ "3pao_attestations": [' >> trusted_attestations.json
 
+          # Check GPG signature of commit
           SIG_STATUS=$(git log --show-signature -n 1 $COMMIT_SHA 2>&1)
           if echo "$SIG_STATUS" | grep -q "Good signature"; then
             SIGNER=$(echo "$SIG_STATUS" | grep "gpg:" | grep "key" | grep -oE '[A-F0-9]{16}')
             if [[ " ${TRUSTED_KEYS[@]} " =~ " ${SIGNER} " ]]; then
-              echo "✅ Commit $COMMIT_SHA is signed and trusted ($SIGNER)"
+              echo "✅ Commit $COMMIT_SHA is signed and trusted by $SIGNER"
+
+              # Try to extract KSI ID from changed file name
               KSI_ID=$(git show $COMMIT_SHA --name-only | grep 'validation-ksi-' | sed 's|validation-ksi-\(.*\).json|\1|' | head -n 1)
               echo "Extracted KSI ID: $KSI_ID"
               [ -z "$KSI_ID" ] && KSI_ID="unknown"
+
+              # Append trusted attestation entry
               echo "  {" >> trusted_attestations.json
               echo "    \"ksi_id\": \"$KSI_ID\"," >> trusted_attestations.json
               echo "    \"signed_by\": \"$SIGNER_NAME\"," >> trusted_attestations.json
@@ -50,7 +60,7 @@ jobs:
               echo "    \"validation_date\": \"$DATE\"" >> trusted_attestations.json
               echo "  }" >> trusted_attestations.json
             else
-              echo "❌ Commit $COMMIT_SHA signed with untrusted key $SIGNER"
+              echo "❌ Commit signed with untrusted GPG key ($SIGNER)"
               exit 1
             fi
           else
@@ -60,11 +70,13 @@ jobs:
 
           echo "] }" >> trusted_attestations.json
 
-      - name: Debug trusted_attestations.json
+      # Step 4: Print file for debug visibility
+      - name: Debug output of trusted_attestations.json
         run: |
-          echo "📄 Contents of trusted_attestations.json:"
+          echo "📄 Final contents:"
           cat trusted_attestations.json
 
+      # Step 5: Commit and push metadata (if changed)
       - name: Commit trusted_attestations.json to public repo
         run: |
           git config user.name "github-actions"
