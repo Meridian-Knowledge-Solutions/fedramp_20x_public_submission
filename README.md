@@ -102,7 +102,7 @@ This system provides a transparent, integrity-preserving view of Meridian’s ev
         {
           "description": "Use WAF to mitigate web application attacks.",
           "assertion": "true",
-          "evidence_reference": "evidence_v2/ksi-cna/waf_acl.json"
+          "evidence_reference": "evidence/ksi-cna/waf_acl.json"
         }
       ],
       "continuous_reporting": true
@@ -139,7 +139,7 @@ As part of our Phase Two roadmap, we are preparing an enhanced JSON format to su
         {
           "description": "Have Denial of Service (DoS) protection implemented for all services.",
           "assertion": "true",
-          "evidence_reference": "evidence/ksi-cna/aws_shield_dos_protection.pdf",
+          "evidence_reference": "evidence_v2/ksi-cna/aws_shield_dos_protection.pdf",
           "evidence_type": "static",
           "validation_method": "Manual review of submitted evidence by 3PAO or CSP",
           "validation_timestamp": "2025-05-07T00:00:00Z",
