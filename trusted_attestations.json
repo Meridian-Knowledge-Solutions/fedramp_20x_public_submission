@@ -4,15 +4,7 @@
       "ksi_id": "KSI-CNA",
       "signed_by": "fortetroy",
       "gpg_key_id": "6C8481C18765D19D",
-      "commit_sha": "abc1234",
+      "commit_sha": "fe3c9433675e5ade24207f8739baf4b76cf9c144",
       "validation_date": "2025-05-24T13:45:00Z"
     },
-    {
-      "ksi_id": "KSI-SC",
-      "signed_by": "fortetroy",
-      "gpg_key_id": "6C8481C18765D19D",
-      "commit_sha": "abc1235",
-      "validation_date": "2025-05-24T13:47:00Z"
-    }
-  ]
-}
+  
