@@ -1,4 +1,4 @@
-name: GPG Signature Verification
+name: GPG Signature Verification and Attestation Logging
 
 on:
   push:
@@ -11,15 +11,15 @@ on:
       - 'validation-*/**'
 
 jobs:
-  verify-signatures:
-    name: Verify GPG signatures on validation commits
+  verify-and-log:
+    name: Verify GPG Signatures & Log Attestations
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # get full history
+          fetch-depth: 0
 
       - name: Get commit list
         id: commits
@@ -28,31 +28,48 @@ jobs:
           git log --pretty=format:"%H" ${{ github.event.before }}..${{ github.sha }} >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
-      - name: Verify each commit is GPG signed and trusted
+      - name: Verify each commit and write trusted_attestations.json
         run: |
-          TRUSTED_KEYS=("6C8481C18765D19D")  # Add more if needed
-          FAILURES=0
+          TRUSTED_KEYS=("6C8481C18765D19D")
+          SIGNER_NAME="fortetroy"
+          DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          > trusted_attestations.json
+          echo '{ "3pao_attestations": [' >> trusted_attestations.json
+          COMMIT_INDEX=0
 
           for COMMIT in ${{ steps.commits.outputs.commits }}; do
             SIG_STATUS=$(git log --show-signature -n 1 $COMMIT 2>&1)
 
             if echo "$SIG_STATUS" | grep -q "Good signature"; then
               SIGNER=$(echo "$SIG_STATUS" | grep "gpg:" | grep "key" | grep -oE '[A-F0-9]{16}')
-              if [[ ! " ${TRUSTED_KEYS[@]} " =~ " ${SIGNER} " ]]; then
-                echo "❌ Commit $COMMIT is signed, but with untrusted key: $SIGNER"
-                FAILURES=$((FAILURES+1))
-              else
+              if [[ " ${TRUSTED_KEYS[@]} " =~ " ${SIGNER} " ]]; then
                 echo "✅ Commit $COMMIT is signed and trusted ($SIGNER)"
+                KSI_ID=$(git show $COMMIT --name-only | grep 'validation-ksi-' | sed 's|validation-ksi-\(.*\).json|\1|' | head -n 1)
+                [ "$COMMIT_INDEX" -gt 0 ] && echo ',' >> trusted_attestations.json
+                echo "  {" >> trusted_attestations.json
+                echo "    \"ksi_id\": \"$KSI_ID\"," >> trusted_attestations.json
+                echo "    \"signed_by\": \"$SIGNER_NAME\"," >> trusted_attestations.json
+                echo "    \"gpg_key_id\": \"$SIGNER\"," >> trusted_attestations.json
+                echo "    \"commit_sha\": \"$COMMIT\"," >> trusted_attestations.json
+                echo "    \"validation_date\": \"$DATE\"" >> trusted_attestations.json
+                echo "  }" >> trusted_attestations.json
+                COMMIT_INDEX=$((COMMIT_INDEX+1))
+              else
+                echo "❌ Commit $COMMIT signed with untrusted key $SIGNER"
+                exit 1
               fi
             else
               echo "❌ Commit $COMMIT is not GPG signed"
-              FAILURES=$((FAILURES+1))
+              exit 1
             fi
           done
 
-          if [ "$FAILURES" -gt 0 ]; then
-            echo "✋ One or more commits are unsigned or untrusted"
-            exit 1
-          else
-            echo "✅ All validation commits are GPG signed and trusted"
-          fi
+          echo "] }" >> trusted_attestations.json
+
+      - name: Commit trusted_attestations.json to public repo
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add trusted_attestations.json
+          git commit -m "Update trusted_attestations.json after GPG validation" || echo "No changes to commit"
+          git push origin main
