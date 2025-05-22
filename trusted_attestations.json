@@ -1,10 +1,4 @@
 {
-  "3pao_attestations": [
-    {
-      "ksi_id": "KSI-CNA",
-      "signed_by": "fortetroy",
-      "gpg_key_id": "6C8481C18765D19D",
-      "commit_sha": "fe3c943",
-      "validation_date": "2025-05-24T13:45:00Z"
-    },
-  
+  "3pao_attestations": []
+}
+
