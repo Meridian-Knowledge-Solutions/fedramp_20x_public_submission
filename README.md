@@ -74,36 +74,82 @@ This system provides a transparent, integrity-preserving view of Meridian’s ev
 
 ---
 
-## ✅ Submission Format (Phase One Example)
+### ✅ Submission Format (Phase One Example)
 
 ```json
 {
-  "ksi_id": "KSI-CNA",
-  "title": "Cloud Native Architecture",
-  "validation_results": [
+  "ksi_validations": [
     {
-      "description": "Use WAF to mitigate web application attacks.",
-      "assertion": "true",
-      "evidence_reference": "evidence_v2/ksi-cna/waf_acl.json",
-      "evidence_type": "cli_output",
-      "validation_method": "AWS CLI via GitHub Action",
-      "validation_timestamp": "2025-05-20T00:00:00Z"
+      "ksi_id": "KSI-CNA",
+      "title": "Cloud Native Architecture",
+      "validation_results": [
+        {
+          "description": "Use WAF to mitigate web application attacks.",
+          "assertion": "true",
+          "evidence_reference": "evidence_v2/ksi-cna/waf_acl.json"
+        }
+      ],
+      "continuous_reporting": true
     }
-  ],
-  "continuous_reporting": true
+  ]
 }
 ```
 
 ### 🔍 Key Fields Explained
 
-| Field                 | Description                                         |
-|----------------------|-----------------------------------------------------|
-| `ksi_id`             | Key Security Indicator ID                           |
-| `assertion`          | Boolean validation of the requirement               |
-| `evidence_reference` | Path to public or internal evidence (not included)  |
-| `evidence_type`      | `static` or `cli_output`                            |
-| `validation_method`  | Manual review, AWS CLI, Terraform, etc.             |
-| `validation_timestamp` | ISO8601 datetime of last validation               |
+| Field                   | Description                                                                 |
+|------------------------|-----------------------------------------------------------------------------|
+| `ksi_validations[]`    | Array of KSI entries                                                         |
+| `ksi_id`               | Key Security Indicator ID (e.g., `KSI-CNA`)                                  |
+| `title`                | Descriptive title for the KSI                                                |
+| `validation_results[]` | One or more assertion entries per KSI                                        |
+| `description`          | Description of what’s being validated                                        |
+| `assertion`            | `"true"` or `"false"` based on the validation outcome                        |
+| `evidence_reference`   | Relative path to evidence (file not required in public repo)                 |
+| `continuous_reporting` | Boolean flag indicating Phase Two automation readiness (optional in Phase 1) |
+
+
+### 🚀 Planned Submission Format (Phase Two – Enhanced JSON)
+
+As part of our Phase Two roadmap, we are preparing an enhanced JSON format to support deeper automation, validation traceability, and dependency transparency.
+
+```json
+{
+  "ksi_validations": [
+    {
+      "ksi_id": "KSI-CNA",
+      "title": "Cloud Native Architecture",
+      "validation_results": [
+        {
+          "description": "Have Denial of Service (DoS) protection implemented for all services.",
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-cna/aws_shield_dos_protection.pdf",
+          "evidence_type": "static",
+          "validation_method": "Manual review of submitted evidence by 3PAO or CSP",
+          "validation_timestamp": "2025-05-07T00:00:00Z",
+          "service_dependencies": [
+            "AWS GovCloud",
+            "Terraform"
+          ]
+        }
+      ],
+      "continuous_reporting": true
+    }
+  ]
+}
+```
+
+### 🧠 Additional Fields Introduced
+
+| Field                | Description                                                                  |
+|--------------------- |------------------------------------------------------------------------------|
+| `evidence_type`      | Classifies evidence source: `static`, `cli_output`, etc.                     |
+| `validation_method`  | How the validation was performed: CLI scan, Terraform plan, manual review    |
+| `validation_timestamp| Timestamp of last known validation (ISO 8601 format)                         |
+| `service_dependencies| Lists cloud services/tools used to support or validate the KSI               |
+
+This schema will support continuous validation, richer audit trails, and automated KSI enforcement aligned with future FedRAMP 20x and S3AD expectations.
+
 
 ---
 
