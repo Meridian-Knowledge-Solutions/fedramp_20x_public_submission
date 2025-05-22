@@ -1,0 +1,54 @@
+{
+  "ksi_id": "ksi-ce",
+  "3pao_validation": {
+    "validation_date": "2025-05-22T03:28:16Z",
+    "validator": {
+      "name": "Jane Smith",
+      "organization": "Example 3PAO, Inc.",
+      "fedramp_id": "3PAO-XXXX-YYYY"
+    },
+    "ksi_requirements": {
+      "validation_status": "compliant",
+      "assertion_verified": true,
+      "validation_methods_used": [
+        "Training program review",
+        "Role-specific training validation"
+      ]
+    },
+    "required_capabilities": [
+      {
+        "capability": "Ensure all employees receive security awareness training",
+        "implementation_status": "implemented",
+        "validation_method": "Documentation review and system verification",
+        "evidence_references": [
+          "README_ksi-ce.md"
+        ],
+        "notes": "Validated ensure all employees receive security awareness training"
+      },
+      {
+        "capability": "Require role-specific training for high risk roles",
+        "implementation_status": "implemented",
+        "validation_method": "Documentation review and system verification",
+        "evidence_references": [
+          "README_ksi-ce.md"
+        ],
+        "notes": "Validated require role-specific training for high risk roles"
+      }
+    ],
+    "evidence_reviewed": [
+      {
+        "filename": "README_ksi-ce.md",
+        "verification_status": "confirmed",
+        "verification_notes": "Evidence confirms implementation of ksi-ce requirements"
+      }
+    ],
+    "findings": [],
+    "verification_statement": "The 3PAO has validated that the system meets requirements. All KSI-CE requirements have been met.",
+    "digital_signature": {
+      "signature_id": "sig-20250522-ksi-ce",
+      "signature_method": "PGP",
+      "signature_date": "2025-05-22T03:28:16Z",
+      "verification_uri": "https://example3pao.com/verify/ksi-ce-2025-05-22"
+    }
+  }
+}

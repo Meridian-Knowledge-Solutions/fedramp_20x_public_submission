@@ -1,0 +1,92 @@
+{
+  "ksi_id": "ksi-ir",
+  "3pao_validation": {
+    "validation_date": "2025-05-22T03:28:16Z",
+    "validator": {
+      "name": "Jane Smith",
+      "organization": "Example 3PAO, Inc.",
+      "fedramp_id": "3PAO-XXXX-YYYY"
+    },
+    "ksi_requirements": {
+      "validation_status": "compliant",
+      "assertion_verified": true,
+      "validation_methods_used": [
+        "Incident response plan review",
+        "Backup testing",
+        "Recovery testing",
+        "Incident reporting validation"
+      ]
+    },
+    "required_capabilities": [
+      {
+        "capability": "Define Recovery Time Objective (RTO) and Recovery Point Objective (RPO)",
+        "implementation_status": "implemented",
+        "validation_method": "Documentation review and system verification",
+        "evidence_references": [
+          "README_ksi-ir.md"
+        ],
+        "notes": "Validated define recovery time objective (rto) and recovery point objective (rpo)"
+      },
+      {
+        "capability": "Perform system backups aligned with the RTO and RPO",
+        "implementation_status": "implemented",
+        "validation_method": "Documentation review and system verification",
+        "evidence_references": [
+          "README_ksi-ir.md"
+        ],
+        "notes": "Validated perform system backups aligned with the rto and rpo"
+      },
+      {
+        "capability": "Test the capability to recover from incidents and contingencies",
+        "implementation_status": "implemented",
+        "validation_method": "Documentation review and system verification",
+        "evidence_references": [
+          "README_ksi-ir.md"
+        ],
+        "notes": "Validated test the capability to recover from incidents and contingencies"
+      },
+      {
+        "capability": "Report incidents according to federal requirements",
+        "implementation_status": "implemented",
+        "validation_method": "Documentation review and system verification",
+        "evidence_references": [
+          "README_ksi-ir.md"
+        ],
+        "notes": "Validated report incidents according to federal requirements"
+      },
+      {
+        "capability": "Maintain a log of incidents and periodically review past incidents for patterns or vulnerabilities",
+        "implementation_status": "implemented",
+        "validation_method": "Documentation review and system verification",
+        "evidence_references": [
+          "README_ksi-ir.md"
+        ],
+        "notes": "Validated maintain a log of incidents and periodically review past incidents for patterns or vulnerabilities"
+      },
+      {
+        "capability": "Measure Mean Time To Detect (MTTD) and Mean Time To Resolution (MTTR) for incidents",
+        "implementation_status": "implemented",
+        "validation_method": "Documentation review and system verification",
+        "evidence_references": [
+          "README_ksi-ir.md"
+        ],
+        "notes": "Validated measure mean time to detect (mttd) and mean time to resolution (mttr) for incidents"
+      }
+    ],
+    "evidence_reviewed": [
+      {
+        "filename": "README_ksi-ir.md",
+        "verification_status": "confirmed",
+        "verification_notes": "Evidence confirms implementation of ksi-ir requirements"
+      }
+    ],
+    "findings": [],
+    "verification_statement": "The 3PAO has validated that the system meets requirements. All KSI-IR requirements have been met.",
+    "digital_signature": {
+      "signature_id": "sig-20250522-ksi-ir",
+      "signature_method": "PGP",
+      "signature_date": "2025-05-22T03:28:16Z",
+      "verification_uri": "https://example3pao.com/verify/ksi-ir-2025-05-22"
+    }
+  }
+}

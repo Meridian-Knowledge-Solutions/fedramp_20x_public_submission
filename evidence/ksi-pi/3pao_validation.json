@@ -1,0 +1,123 @@
+{
+  "ksi_id": "ksi-pi",
+  "3pao_validation": {
+    "validation_date": "2025-05-22T03:28:16Z",
+    "validator": {
+      "name": "Jane Smith",
+      "organization": "Example 3PAO, Inc.",
+      "fedramp_id": "3PAO-XXXX-YYYY"
+    },
+    "ksi_requirements": {
+      "validation_status": "compliant",
+      "assertion_verified": true,
+      "validation_methods_used": [
+        "Asset inventory validation",
+        "Policy review",
+        "SDLC security verification",
+        "Automation validation"
+      ]
+    },
+    "required_capabilities": [
+      {
+        "capability": "Have an up-to-date asset inventory or code defining all deployed assets",
+        "implementation_status": "implemented",
+        "validation_method": "Documentation review and system verification",
+        "evidence_references": [
+          "aws_config_aggregator_dashboard.png",
+          "security_policy_collection_repository.zip"
+        ],
+        "notes": "Validated have an up-to-date asset inventory or code defining all deployed assets"
+      },
+      {
+        "capability": "Have policies outlining their security objectives",
+        "implementation_status": "implemented",
+        "validation_method": "Documentation review and system verification",
+        "evidence_references": [
+          "aws_config_aggregator_dashboard.png",
+          "security_policy_collection_repository.zip"
+        ],
+        "notes": "Validated have policies outlining their security objectives"
+      },
+      {
+        "capability": "Maintain a vulnerability disclosure program",
+        "implementation_status": "implemented",
+        "validation_method": "Documentation review and system verification",
+        "evidence_references": [
+          "aws_config_aggregator_dashboard.png",
+          "security_policy_collection_repository.zip"
+        ],
+        "notes": "Validated maintain a vulnerability disclosure program"
+      },
+      {
+        "capability": "Build security considerations into the Software Development Lifecycle (SDLC) and aligning with Secure By Design principles",
+        "implementation_status": "implemented",
+        "validation_method": "Documentation review and system verification",
+        "evidence_references": [
+          "aws_config_aggregator_dashboard.png",
+          "security_policy_collection_repository.zip"
+        ],
+        "notes": "Validated build security considerations into the software development lifecycle (sdlc) and aligning with secure by design principles"
+      },
+      {
+        "capability": "Document methods used to automatically evaluate implementations",
+        "implementation_status": "implemented",
+        "validation_method": "Documentation review and system verification",
+        "evidence_references": [
+          "aws_config_aggregator_dashboard.png",
+          "security_policy_collection_repository.zip"
+        ],
+        "notes": "Validated document methods used to automatically evaluate implementations"
+      },
+      {
+        "capability": "Have a dedicated staff and budget for security",
+        "implementation_status": "implemented",
+        "validation_method": "Documentation review and system verification",
+        "evidence_references": [
+          "aws_config_aggregator_dashboard.png",
+          "security_policy_collection_repository.zip"
+        ],
+        "notes": "Validated have a dedicated staff and budget for security"
+      }
+    ],
+    "evidence_reviewed": [
+      {
+        "filename": "aws_config_aggregator_dashboard.png",
+        "verification_status": "confirmed",
+        "verification_notes": "Evidence confirms implementation of ksi-pi requirements"
+      },
+      {
+        "filename": "security_policy_collection_repository.zip",
+        "verification_status": "confirmed",
+        "verification_notes": "Evidence confirms implementation of ksi-pi requirements"
+      },
+      {
+        "filename": "vulnerability_disclosure_program.pdf",
+        "verification_status": "confirmed",
+        "verification_notes": "Evidence confirms implementation of ksi-pi requirements"
+      },
+      {
+        "filename": "sdlc_secure_by_design_document.pdf",
+        "verification_status": "confirmed",
+        "verification_notes": "Evidence confirms implementation of ksi-pi requirements"
+      },
+      {
+        "filename": "automated_control_validation_methods.pdf",
+        "verification_status": "confirmed",
+        "verification_notes": "Evidence confirms implementation of ksi-pi requirements"
+      },
+      {
+        "filename": "security_budget_allocation_and_roles.pdf",
+        "verification_status": "confirmed",
+        "verification_notes": "Evidence confirms implementation of ksi-pi requirements"
+      }
+    ],
+    "findings": [],
+    "verification_statement": "The 3PAO has validated that the Security policies, asset inventories, and governance practices are maintained to ensure consistent and traceable security operations across the system.. All KSI-PI requirements have been met.",
+    "digital_signature": {
+      "signature_id": "sig-20250522-ksi-pi",
+      "signature_method": "PGP",
+      "signature_date": "2025-05-22T03:28:16Z",
+      "verification_uri": "https://example3pao.com/verify/ksi-pi-2025-05-22"
+    }
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "ksi_id": "ksi-sc",
+  "3pao_validation": {
+    "validation_date": "2025-05-22T00:00:00Z",
+    "validator": {
+      "name": "Jane Smith",
+      "organization": "Example 3PAO, Inc.",
+      "fedramp_id": "3PAO-XXXX-YYYY"
+    },
+    "ksi_requirements": {
+      "validation_status": "compliant",
+      "assertion_verified": true,
+      "validation_methods_used": [
+        "Documentation review",
+        "Configuration analysis",
+        "AWS service configuration verification",
+        "Terraform validation",
+        "Encryption testing"
+      ]
+    },
+    "required_capabilities": [
+      {
+        "capability": "Harden and review network and system configurations",
+        "implementation_status": "implemented",
+        "validation_method": "Verified AWS Config rules and system hardening controls",
+        "evidence_references": ["aws_config.pdf", "centralized_configuration_management_aggregator.png"],
+        "notes": "Network and system configurations properly hardened and continuously monitored"
+      },
+      {
+        "capability": "Encrypt all network traffic",
+        "implementation_status": "implemented",
+        "validation_method": "Verified TLS configuration for all endpoints",
+        "evidence_references": ["https_tls_encryption_all_endpoints.pdf"],
+        "notes": "All network traffic encrypted using TLS 1.2 or higher"
+      },
+      {
+        "capability": "Encrypt all federal and sensitive information at rest",
+        "implementation_status": "implemented",
+        "validation_method": "Verified KMS configuration and encryption policies",
+        "evidence_references": ["encryption_at_rest.pdf", "kms_encryption.png"],
+        "notes": "All data at rest encrypted using AWS KMS"
+      },
+      {
+        "capability": "Manage configuration centrally",
+        "implementation_status": "implemented",
+        "validation_method": "Verified centralized configuration management approach",
+        "evidence_references": ["centralized_configuration_management_aggregator.png"],
+        "notes": "Configuration managed centrally through AWS Config and Terraform"
+      },
+      {
+        "capability": "Enforce system and component integrity through cryptographic means",
+        "implementation_status": "implemented",
+        "validation_method": "Verified KMS key usage and integrity validation methods",
+        "evidence_references": ["kms_encryption.png", "planned_implementation_AMI.pdf"],
+        "notes": "System integrity enforced through cryptographic means"
+      },
+      {
+        "capability": "Use a key management capability to execute regular rotation of digital keys",
+        "implementation_status": "implemented",
+        "validation_method": "Verified KMS key rotation policy",
+        "evidence_references": ["kms_encryption.png"],
+        "notes": "Key rotation implemented using AWS KMS automatic rotation"
+      },
+      {
+        "capability": "Use a consistent, risk-informed approach for applying security patches",
+        "implementation_status": "implemented",
+        "validation_method": "Reviewed patch management strategy documentation",
+        "evidence_references": ["patch_management_strategy.pdf"],
+        "notes": "Risk-informed patching strategy implemented"
+      }
+    ],
+    "evidence_reviewed": [
+      {
+        "filename": "aws_config.pdf",
+        "verification_status": "confirmed",
+        "verification_notes": "AWS Config properly configured with appropriate rules"
+      },
+      {
+        "filename": "https_tls_encryption_all_endpoints.pdf",
+        "verification_status": "confirmed",
+        "verification_notes": "All endpoints use TLS 1.2 or higher for encryption"
+      },
+      {
+        "filename": "encryption_at_rest.pdf",
+        "verification_status": "confirmed",
+        "verification_notes": "All data properly encrypted at rest"
+      },
+      {
+        "filename": "centralized_configuration_management_aggregator.png",
+        "verification_status": "confirmed",
+        "verification_notes": "Centralized configuration management implemented"
+      },
+      {
+        "filename": "planned_implementation_AMI.pdf",
+        "verification_status": "confirmed",
+        "verification_notes": "AMI implementation plan includes integrity verification"
+      },
+      {
+        "filename": "kms_encryption.png",
+        "verification_status": "confirmed",
+        "verification_notes": "KMS properly configured with appropriate key policies and rotation"
+      },
+      {
+        "filename": "patch_management_strategy.pdf",
+        "verification_status": "confirmed",
+        "verification_notes": "Patch management strategy follows risk-based approach"
+      }
+    ],
+    "findings": [],
+    "verification_statement": "The 3PAO has validated that all service configurations are securely managed, encrypted, and centrally controlled with continuous validation. All KSI-SC requirements have been met, with effective implementation of system hardening, traffic encryption, data encryption, centralized configuration management, cryptographic integrity, key rotation, and security patching.",
+    "digital_signature": {
+      "signature_id": "sig-20250522-15501",
+      "signature_method": "PGP",
+      "signature_date": "2025-05-22T15:50:10Z",
+      "verification_uri": "https://example3pao.com/verify/sig-20250522-15501"
+    }
+  }
+}
