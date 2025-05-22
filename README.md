@@ -173,7 +173,7 @@ If an assertion fails and no evidence is present:
 - ✅ No sensitive evidence is publicly exposed
 - ✅ Evidence commit metadata proves truth and traceability
 - ✅ Internal artifacts are secured in a private repo, reviewed by 3PAO
-- ✅ All automation outputs shown here were generated within Meridian LMS AWS GovCloud environments
+- ✅ All automation outputs shown here were generated within Meridian LMS AWS Commercial (east) environments
 
 ---
 
