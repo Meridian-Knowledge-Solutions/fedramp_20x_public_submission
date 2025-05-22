@@ -228,9 +228,8 @@
       "validation_results": [
         {
           "description": "Log and monitor system modifications through cloud-native tooling.",
-          "assertion": "false",
-          "evidence_reference": "evidence/ksi-cm/cloud_trial.png",
-          "validation_method": "Missing evidence - auto-failed"
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-cm/cloud_trail.png"
         },
         {
           "description": "Execute changes through redeployment of version-controlled immutable infrastructure.",
