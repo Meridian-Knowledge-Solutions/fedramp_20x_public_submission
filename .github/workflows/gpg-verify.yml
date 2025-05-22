@@ -1,0 +1,58 @@
+name: GPG Signature Verification
+
+on:
+  push:
+    paths:
+      - '3pao/**'
+      - 'validation-*/**'
+  pull_request:
+    paths:
+      - '3pao/**'
+      - 'validation-*/**'
+
+jobs:
+  verify-signatures:
+    name: Verify GPG signatures on validation commits
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # get full history
+
+      - name: Get commit list
+        id: commits
+        run: |
+          echo "commits<<EOF" >> $GITHUB_OUTPUT
+          git log --pretty=format:"%H" ${{ github.event.before }}..${{ github.sha }} >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Verify each commit is GPG signed and trusted
+        run: |
+          TRUSTED_KEYS=("6C8481C18765D19D")  # Add more if needed
+          FAILURES=0
+
+          for COMMIT in ${{ steps.commits.outputs.commits }}; do
+            SIG_STATUS=$(git log --show-signature -n 1 $COMMIT 2>&1)
+
+            if echo "$SIG_STATUS" | grep -q "Good signature"; then
+              SIGNER=$(echo "$SIG_STATUS" | grep "gpg:" | grep "key" | grep -oE '[A-F0-9]{16}')
+              if [[ ! " ${TRUSTED_KEYS[@]} " =~ " ${SIGNER} " ]]; then
+                echo "❌ Commit $COMMIT is signed, but with untrusted key: $SIGNER"
+                FAILURES=$((FAILURES+1))
+              else
+                echo "✅ Commit $COMMIT is signed and trusted ($SIGNER)"
+              fi
+            else
+              echo "❌ Commit $COMMIT is not GPG signed"
+              FAILURES=$((FAILURES+1))
+            fi
+          done
+
+          if [ "$FAILURES" -gt 0 ]; then
+            echo "✋ One or more commits are unsigned or untrusted"
+            exit 1
+          else
+            echo "✅ All validation commits are GPG signed and trusted"
+          fi
