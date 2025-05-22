@@ -21,50 +21,49 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Get commit list
-        id: commits
-        run: |
-          echo "commits<<EOF" >> $GITHUB_OUTPUT
-          git log --pretty=format:"%H" ${{ github.event.before }}..${{ github.sha }} >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
+      - name: Get current commit SHA
+        id: commit_sha
+        run: echo "sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
 
-      - name: Verify each commit and write trusted_attestations.json
+      - name: Verify commit and write trusted_attestations.json
         run: |
           TRUSTED_KEYS=("6C8481C18765D19D")
           SIGNER_NAME="fortetroy"
           DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          COMMIT_SHA="${{ steps.commit_sha.outputs.sha }}"
           > trusted_attestations.json
           echo '{ "3pao_attestations": [' >> trusted_attestations.json
-          COMMIT_INDEX=0
 
-          for COMMIT in ${{ steps.commits.outputs.commits }}; do
-            SIG_STATUS=$(git log --show-signature -n 1 $COMMIT 2>&1)
-
-            if echo "$SIG_STATUS" | grep -q "Good signature"; then
-              SIGNER=$(echo "$SIG_STATUS" | grep "gpg:" | grep "key" | grep -oE '[A-F0-9]{16}')
-              if [[ " ${TRUSTED_KEYS[@]} " =~ " ${SIGNER} " ]]; then
-                echo "✅ Commit $COMMIT is signed and trusted ($SIGNER)"
-                KSI_ID=$(git show $COMMIT --name-only | grep 'validation-ksi-' | sed 's|validation-ksi-\(.*\).json|\1|' | head -n 1)
-                [ "$COMMIT_INDEX" -gt 0 ] && echo ',' >> trusted_attestations.json
-                echo "  {" >> trusted_attestations.json
-                echo "    \"ksi_id\": \"$KSI_ID\"," >> trusted_attestations.json
-                echo "    \"signed_by\": \"$SIGNER_NAME\"," >> trusted_attestations.json
-                echo "    \"gpg_key_id\": \"$SIGNER\"," >> trusted_attestations.json
-                echo "    \"commit_sha\": \"$COMMIT\"," >> trusted_attestations.json
-                echo "    \"validation_date\": \"$DATE\"" >> trusted_attestations.json
-                echo "  }" >> trusted_attestations.json
-                COMMIT_INDEX=$((COMMIT_INDEX+1))
-              else
-                echo "❌ Commit $COMMIT signed with untrusted key $SIGNER"
-                exit 1
-              fi
+          SIG_STATUS=$(git log --show-signature -n 1 $COMMIT_SHA 2>&1)
+          if echo "$SIG_STATUS" | grep -q "Good signature"; then
+            SIGNER=$(echo "$SIG_STATUS" | grep "gpg:" | grep "key" | grep -oE '[A-F0-9]{16}')
+            if [[ " ${TRUSTED_KEYS[@]} " =~ " ${SIGNER} " ]]; then
+              echo "✅ Commit $COMMIT_SHA is signed and trusted ($SIGNER)"
+              KSI_ID=$(git show $COMMIT_SHA --name-only | grep 'validation-ksi-' | sed 's|validation-ksi-\(.*\).json|\1|' | head -n 1)
+              echo "Extracted KSI ID: $KSI_ID"
+              [ -z "$KSI_ID" ] && KSI_ID="unknown"
+              echo "  {" >> trusted_attestations.json
+              echo "    \"ksi_id\": \"$KSI_ID\"," >> trusted_attestations.json
+              echo "    \"signed_by\": \"$SIGNER_NAME\"," >> trusted_attestations.json
+              echo "    \"gpg_key_id\": \"$SIGNER\"," >> trusted_attestations.json
+              echo "    \"commit_sha\": \"$COMMIT_SHA\"," >> trusted_attestations.json
+              echo "    \"validation_date\": \"$DATE\"" >> trusted_attestations.json
+              echo "  }" >> trusted_attestations.json
             else
-              echo "❌ Commit $COMMIT is not GPG signed"
+              echo "❌ Commit $COMMIT_SHA signed with untrusted key $SIGNER"
               exit 1
             fi
-          done
+          else
+            echo "❌ Commit $COMMIT_SHA is not GPG signed"
+            exit 1
+          fi
 
           echo "] }" >> trusted_attestations.json
+
+      - name: Debug trusted_attestations.json
+        run: |
+          echo "📄 Contents of trusted_attestations.json:"
+          cat trusted_attestations.json
 
       - name: Commit trusted_attestations.json to public repo
         run: |
