@@ -2,7 +2,7 @@
 
 This repository contains Meridian LMS’s structured submission for the **FedRAMP 20x Phase One Pilot**, aligned with [RFC-0006](https://github.com/GSA/fedramp-automation/blob/main/RFC/RFC-0006.md). It includes:
 
-- All 10 **Key Security Indicators (KSIs)**
+- All 9 **Key Security Indicators (KSIs)**
 - Machine-readable validations aligned to **NIST 800-53 Rev. 5**
 - Git-tracked, commit-backed evidence assertions
 - Automation metadata supporting **Phase Two readiness**
@@ -38,6 +38,21 @@ This dashboard reflects a real-time view of Meridian’s compliance posture. It 
   - Visually distinguishes between static and CLI-based evidence
   - Renders lock indicators with tooltip and access request links for restricted artifacts
   - Highlights SHA and commit time for trust and audit traceability
+ 
+### 📈 Enhanced Transparency Features
+
+The dashboard includes advanced validation metadata to improve audit clarity:
+
+- 🔹 **Evidence Trace** column displays:
+  - Git commit SHA
+  - UTC timestamp of evidence validation
+  - Local timestamp auto-adjusted to the viewer's timezone
+- 🔍 **Validation Method Tooltips** show how each assertion was verified (e.g., CLI, Terraform, manual review)
+- 🎛 **KSI Filter Dropdown** allows reviewers to focus on specific KSI families
+- 📊 **Summary Banner** displays total, passed, failed, and restricted validations
+- 🔒 Static artifacts include "Evidence restricted" status with a **Request Access** link
+
+These enhancements reinforce the submission's goals of **public transparency, traceable compliance, and reviewer-friendly usability**.
 
 ---
 
@@ -146,7 +161,6 @@ If an assertion fails and no evidence is present:
 | KSI-3IR    | Third Party Information Resources    |
 | KSI-CE     | Cybersecurity Education              |
 | KSI-IR     | Incident Response                    |
-| KSI-RA     | Risk Assessment                      |
 
 ---
 
