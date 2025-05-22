@@ -4,7 +4,7 @@
     "validation_date": "2025-05-22T00:00:00Z",
     "validator": {
       "name": "Jane Smith",
-      "organization": "Example 3PAO, Inc.",
+      "organization": "Example 3PAO, LLC",
       "fedramp_id": "3PAO-XXXX-YYYY"
     },
     "ksi_requirements": {
