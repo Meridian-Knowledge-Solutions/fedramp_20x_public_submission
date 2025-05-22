@@ -109,12 +109,14 @@ This system provides a transparent, integrity-preserving view of Meridian’s ev
 
 ## 🛠️ Evidence Strategy
 
-While artifacts are **not included in this public repo**, we provide:
-- 🔒 Git-tracked commit hashes and timestamps for all evidence paths
-- 📁 Clean separation between static (`evidence/`) and CLI (`evidence_v2/`)
-- 🧪 Evidence commit metadata to prove change traceability and recency
+While artifacts are not included in this public repository, we provide:
 
-This enables audit-ready **assertion confidence** without exposing sensitive content or IP.
+- 🔒 Git-tracked commit hashes and timestamps for all evidence references
+- 🧭 Public display of SHA, UTC, and local time directly in the dashboard
+- 📁 Clean separation between static (`evidence/`) and CLI (`evidence_v2/`) evidence types
+- 🧪 Machine-generated metadata to validate evidence freshness and traceability
+
+This enables audit-ready assertion confidence and continuous validation posture **without exposing sensitive files or implementation details**.
 
 ---
 
