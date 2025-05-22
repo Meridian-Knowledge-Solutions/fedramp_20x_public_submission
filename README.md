@@ -9,6 +9,22 @@ This repository contains Meridian LMS’s structured submission for the **FedRAM
 
 ---
 
+### 🛡️ Licensing Status
+
+This repository is public for transparency and collaboration in support of the FedRAMP 20x pilot. However, **no open source license is currently applied**.
+
+At this time:
+
+- The submission is under active 3PAO review and bound by NDA  
+- Evidence artifacts and validation content are subject to controlled access  
+- We welcome public commentary and discussion via GitHub Issues and Pull Requests  
+
+**Reuse, redistribution, or derivative use is not permitted** unless explicitly authorized.
+
+Once the pilot enters a more stable phase and 3PAO assessment concludes, we may apply an open license to encourage broader community adoption and reuse.
+
+---
+
 ## 🔗 Live Trust Dashboard
 
 📍 **[FedRAMP 20x Trust Dashboard](https://meridian-knowledge-solutions.github.io/fedramp_20x_public_submission/)**
