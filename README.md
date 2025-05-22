@@ -125,27 +125,27 @@ This system provides a transparent, integrity-preserving view of Meridian’s ev
 | `continuous_reporting` | Boolean flag indicating Phase Two automation readiness (optional in Phase 1) |
 
 
-### 🚀 Planned Submission Format (Phase Two – Enhanced JSON)
+## 📦 Planned Submission Format (Phase Two – Enhanced JSON with CLI Evidence)
 
-As part of our Phase Two roadmap, we are preparing an enhanced JSON format to support deeper automation, validation traceability, and dependency transparency.
+The following example showcases how CLI-based evidence is structured and reported in our planned Phase Two JSON submission. This format enables more automation-friendly validation and dependency traceability:
 
 ```json
 {
   "ksi_validations": [
     {
-      "ksi_id": "KSI-CNA",
-      "title": "Cloud Native Architecture",
+      "ksi_id": "KSI-SC",
+      "title": "Service Configuration",
       "validation_results": [
         {
-          "description": "Have Denial of Service (DoS) protection implemented for all services.",
+          "description": "Ensure KMS key rotation is enabled for all managed keys.",
           "assertion": "true",
-          "evidence_reference": "evidence_v2/ksi-cna/aws_shield_dos_protection.pdf",
-          "evidence_type": "static",
-          "validation_method": "Manual review of submitted evidence by 3PAO or CSP",
-          "validation_timestamp": "2025-05-07T00:00:00Z",
+          "evidence_reference": "evidence_v2/ksi-sc/kms_key_rotation.json",
+          "evidence_type": "cli_output",
+          "validation_method": "AWS CLI query for KMS key rotation configuration",
+          "validation_timestamp": "2025-05-21T00:00:00Z",
           "service_dependencies": [
-            "AWS GovCloud",
-            "Terraform"
+            "AWS KMS",
+            "AWS CLI"
           ]
         }
       ],
@@ -155,17 +155,16 @@ As part of our Phase Two roadmap, we are preparing an enhanced JSON format to su
 }
 ```
 
-### 🧠 Additional Fields Introduced
+### 🔍 Additional Fields
 
-| Field                | Description                                                                  |
-|--------------------- |------------------------------------------------------------------------------|
-| `evidence_type`      | Classifies evidence source: `static`, `cli_output`, etc.                     |
-| `validation_method`  | How the validation was performed: CLI scan, Terraform plan, manual review    |
-| `validation_timestamp| Timestamp of last known validation (ISO 8601 format)                         |
-| `service_dependencies| Lists cloud services/tools used to support or validate the KSI               |
+| Field                 | Description                                                       |
+|----------------------|-------------------------------------------------------------------|
+| `evidence_type`      | Indicates evidence origin, such as `cli_output` or `static`       |
+| `validation_method`  | Describes the method used to generate or validate evidence        |
+| `validation_timestamp` | Time of last evidence collection (ISO 8601 format)               |
+| `service_dependencies` | Services/tools used during the validation (e.g., AWS, Terraform) |
 
-This schema will support continuous validation, richer audit trails, and automated KSI enforcement aligned with future FedRAMP 20x and S3AD expectations.
-
+This format supports automated audit workflows, enabling real-time and continuous trust signaling across environments.
 
 ---
 
