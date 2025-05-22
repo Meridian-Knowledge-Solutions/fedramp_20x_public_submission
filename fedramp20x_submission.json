@@ -57,9 +57,8 @@
         },
         {
           "description": "Terraform plan output validating the network segmentation and infrastructure-as-code enforcement of private subnets, utility zones, and security groups for cloud-native architecture.",
-          "assertion": "false",
-          "evidence_reference": "evidence/ksi-cna/terraform_plan_output.txt",
-          "validation_method": "Missing evidence - auto-failed"
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-cna/terraform_plan_output.txt"
         },
         {
           "description": "Use cloud-native virtual networks and related capabilities to enforce logical traffic flow controls.",
@@ -204,9 +203,8 @@
         },
         {
           "description": "Terraform plan output providing the infrastructure baseline for monitoring and logging targets, including EC2 instance placement, security groups, and subnet configurations. This context supports configuration scanning and monitoring validation.",
-          "assertion": "false",
-          "evidence_reference": "evidence/ksi-mla/terraform_plan_output.txt",
-          "validation_method": "Missing evidence - auto-failed"
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-mla/terraform_plan_output.txt"
         },
         {
           "description": "Perform Infrastructure as Code (IaC) and configuration scanning using Terraform static analysis to detect misconfigurations before deployment.",
@@ -233,9 +231,8 @@
         },
         {
           "description": "Execute changes through redeployment of version-controlled immutable infrastructure.",
-          "assertion": "false",
-          "evidence_reference": "evidence/ksi-cm/terraform_plan_output.txt",
-          "validation_method": "Missing evidence - auto-failed"
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-cm/terraform_plan_output.txt"
         },
         {
           "description": "Implement automated testing and validation of changes prior to deployment.",
@@ -250,9 +247,8 @@
         },
         {
           "description": "Capture of Terraform plan output showing baseline infrastructure configuration, including EC2 instance IDs, subnet placement, VPC layout, and security group assignments. This evidence supports change tracking, configuration control, and CI/CD enforcement of infrastructure baselines.",
-          "assertion": "false",
-          "evidence_reference": "evidence/ksi-cm/terraform_plan_output.txt",
-          "validation_method": "Missing evidence - auto-failed"
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-cm/terraform_plan_output.txt"
         },
         {
           "description": "Enforce configuration baselines through organizational policies and SOPs.",

@@ -75,6 +75,10 @@
     "commit_sha": "546cb90395c97d66a818711b80f01194c49205ae",
     "timestamp": "2025-05-07T18:45:34-06:00"
   },
+  "evidence/ksi-cm/terraform_plan_output.txt": {
+    "commit_sha": "23755d0ef50bde0307702894c9c4b062f40a3917",
+    "timestamp": "2025-05-15T14:01:53-06:00"
+  },
   "evidence/ksi-cm/cloud_trail.png": {
     "commit_sha": "fcb30423c849fc0318acb647713bec4e22c1bab9",
     "timestamp": "2025-05-19T22:03:28-06:00"
@@ -151,6 +155,10 @@
     "commit_sha": "eb7ce83a78280aff003ab9b250642a2a7851e0b3",
     "timestamp": "2025-04-30T01:00:28-06:00"
   },
+  "evidence/ksi-mla/terraform_plan_output.txt": {
+    "commit_sha": "42d65a2b567d27a6d64a6b64fd85c9dfd2162cea",
+    "timestamp": "2025-05-15T11:57:47-06:00"
+  },
   "evidence/ksi-mla/inspector_EC2.png": {
     "commit_sha": "fe333ebbd364d2a17c9903ff4617a0d73aef4b9f",
     "timestamp": "2025-05-14T16:21:03-06:00"
@@ -190,6 +198,10 @@
   "evidence/ksi-mla/stack_sets_cloudformation.png": {
     "commit_sha": "4e067cab040d9ab160de51cdffd8a71de47a491c",
     "timestamp": "2025-04-30T14:34:52-06:00"
+  },
+  "evidence/ksi-cna/terraform_plan_output.txt": {
+    "commit_sha": "16634e004c0f716e1a113d0c7dd3c664b96400b3",
+    "timestamp": "2025-05-15T14:07:53-06:00"
   },
   "evidence/ksi-cna/nacl_outbound_rules.png": {
     "commit_sha": "e67747a071d4d28e7dc1f4c5adabc27949dcda38",
