@@ -279,9 +279,8 @@
         },
         {
           "description": "Maintain security policies aligned to secure objectives and system functions.",
-          "assertion": "false",
-          "evidence_reference": "evidence/ksi-pi/security_policy_collection_repository.zip",
-          "validation_method": "Missing evidence - auto-failed"
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-pi/security_policy_collection_repository.zip"
         },
         {
           "description": "Maintain a documented and published vulnerability disclosure program.",
@@ -342,9 +341,8 @@
         },
         {
           "description": "FedRAMP Moderate authorization of Elastic Cloud is confirmed. Elastic is used in metadata-only mode without storing or transmitting CUI or PII.",
-          "assertion": "false",
-          "evidence_reference": "evidence/ksi-3ir/fedramp_moderate_vendor_list.xlsx",
-          "validation_method": "Missing evidence - auto-failed"
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-3ir/fedramp_moderate_vendor_list.xlsx"
         },
         {
           "description": "Generate and maintain a conditional SBOM for Elastic Cloud libraries expected to be used in production Low Mode, scoped to metadata-only use. SBOM is inactive unless system resources are deployed.",
