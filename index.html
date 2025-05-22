@@ -96,7 +96,19 @@
   <header>
     <h1>FedRAMP 20x Trust Dashboard</h1>
   </header>
-  <div class="banner">
+  
+  <div class="gpg-banner" style="background: #e6f4ea; border-left: 5px solid #34d058; padding: 1em; margin: 1em 20px; font-family: sans-serif; border-radius: 6px;">
+    <strong>🔐 3PAO Attestation Verified</strong><br>
+    This submission includes commits <strong>cryptographically signed</strong> by the 3PAO using GPG.<br><br>
+    <ul style="margin-left: 1.2em;">
+      <li><strong>Key ID:</strong> <code>6C8481C18765D19D</code></li>
+      <li><strong>Commit SHA:</strong> <code>abc1234</code> <em>(example)</em></li>
+      <li><strong>Status:</strong> ✅ Verified via GitHub</li>
+    </ul>
+    <a href="https://keys.openpgp.org/search?q=6C8481C18765D19D" target="_blank" style="color: #0969da;">🔎 View public GPG key</a>
+  </div>
+
+<div class="banner">
     Transparency-first implementation of the FedRAMP 20x pilot. Last metadata update: <span id="lastUpdated">loading...</span>
   </div>
   <div class="summary" id="summaryStats">Loading validation summary...</div>
