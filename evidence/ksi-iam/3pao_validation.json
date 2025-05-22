@@ -1,0 +1,74 @@
+{
+  "ksi_id": "ksi-iam",
+  "3pao_validation": {
+    "validation_date": "2025-05-22T03:28:16Z",
+    "validator": {
+      "name": "Jane Smith",
+      "organization": "Example 3PAO, Inc.",
+      "fedramp_id": "3PAO-XXXX-YYYY"
+    },
+    "ksi_requirements": {
+      "validation_status": "compliant",
+      "assertion_verified": true,
+      "validation_methods_used": [
+        "Authentication testing",
+        "Access control validation",
+        "API security verification",
+        "Privilege model review"
+      ]
+    },
+    "required_capabilities": [
+      {
+        "capability": "Enforce phishing-resistant multi-factor authentication (MFA)",
+        "implementation_status": "implemented",
+        "validation_method": "Documentation review and system verification",
+        "evidence_references": [
+          "README_ksi-iam.md"
+        ],
+        "notes": "Validated enforce phishing-resistant multi-factor authentication (mfa)"
+      },
+      {
+        "capability": "Enforce strong passwords",
+        "implementation_status": "implemented",
+        "validation_method": "Documentation review and system verification",
+        "evidence_references": [
+          "README_ksi-iam.md"
+        ],
+        "notes": "Validated enforce strong passwords"
+      },
+      {
+        "capability": "Use secure API authentication methods via industry standard protocols",
+        "implementation_status": "implemented",
+        "validation_method": "Documentation review and system verification",
+        "evidence_references": [
+          "README_ksi-iam.md"
+        ],
+        "notes": "Validated use secure api authentication methods via industry standard protocols"
+      },
+      {
+        "capability": "Use a least-privileged, role-based, and just-in-time security model",
+        "implementation_status": "implemented",
+        "validation_method": "Documentation review and system verification",
+        "evidence_references": [
+          "README_ksi-iam.md"
+        ],
+        "notes": "Validated use a least-privileged, role-based, and just-in-time security model"
+      }
+    ],
+    "evidence_reviewed": [
+      {
+        "filename": "README_ksi-iam.md",
+        "verification_status": "confirmed",
+        "verification_notes": "Evidence confirms implementation of ksi-iam requirements"
+      }
+    ],
+    "findings": [],
+    "verification_statement": "The 3PAO has validated that the system meets requirements. All KSI-IAM requirements have been met.",
+    "digital_signature": {
+      "signature_id": "sig-20250522-ksi-iam",
+      "signature_method": "PGP",
+      "signature_date": "2025-05-22T03:28:16Z",
+      "verification_uri": "https://example3pao.com/verify/ksi-iam-2025-05-22"
+    }
+  }
+}

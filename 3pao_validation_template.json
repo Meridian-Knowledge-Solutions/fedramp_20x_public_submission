@@ -1,0 +1,53 @@
+{
+  "ksi_id": "ksi-example",
+  "3pao_validation": {
+    "validation_date": "2025-05-22T00:00:00Z",
+    "validator": {
+      "name": "Jane Smith",
+      "organization": "Example 3PAO, LLC",
+      "fedramp_id": "3PAO-XXXX-YYYY"
+    },
+    "ksi_requirements": {
+      "validation_status": "compliant",
+      "assertion_verified": true,
+      "validation_methods_used": [
+        "Documentation review",
+        "System configuration analysis",
+        "Implementation testing",
+        "Infrastructure as Code validation",
+        "Control validation"
+      ]
+    },
+    "required_capabilities": [
+      {
+        "capability": "Example capability requirement from KSI",
+        "implementation_status": "implemented",
+        "validation_method": "How this capability was verified",
+        "evidence_references": ["file1.pdf", "file2.json"],
+        "notes": "Any specific notes about this capability validation"
+      }
+    ],
+    "evidence_reviewed": [
+      {
+        "filename": "example_file.pdf",
+        "verification_status": "confirmed",
+        "verification_notes": "Implementation matches documentation"
+      }
+    ],
+    "findings": [
+      {
+        "severity": "low",
+        "description": "Minor documentation inconsistency",
+        "remediation_required": false,
+        "remediation_date": null
+      }
+    ],
+    "verification_statement": "The 3PAO has validated that the system meets all requirements specified in this KSI. The implementation is compliant with FedRAMP requirements.",
+    "digital_signature": {
+      "signature_id": "sig-20250522-15302",
+      "signature_method": "PGP",
+      "signature_date": "2025-05-22T15:30:20Z",
+      "verification_uri": "https://example3pao.com/verify/sig-20250522-15302"
+    }
+  }
+}

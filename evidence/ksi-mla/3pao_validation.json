@@ -1,0 +1,92 @@
+{
+  "ksi_id": "ksi-mla",
+  "3pao_validation": {
+    "validation_date": "2025-05-22T03:28:16Z",
+    "validator": {
+      "name": "Jane Smith",
+      "organization": "Example 3PAO, Inc.",
+      "fedramp_id": "3PAO-XXXX-YYYY"
+    },
+    "ksi_requirements": {
+      "validation_status": "compliant",
+      "assertion_verified": true,
+      "validation_methods_used": [
+        "SIEM validation",
+        "Log review verification",
+        "Vulnerability management testing",
+        "Scanning configuration review"
+      ]
+    },
+    "required_capabilities": [
+      {
+        "capability": "Operate a Security Information and Event Management (SIEM) system for centralized, tamper-resistent event, activity, and change logging",
+        "implementation_status": "implemented",
+        "validation_method": "Documentation review and system verification",
+        "evidence_references": [
+          "README_ksi-mla.md"
+        ],
+        "notes": "Validated operate a security information and event management (siem) system for centralized, tamper-resistent event, activity, and change logging"
+      },
+      {
+        "capability": "Regularly review and audit logs",
+        "implementation_status": "implemented",
+        "validation_method": "Documentation review and system verification",
+        "evidence_references": [
+          "README_ksi-mla.md"
+        ],
+        "notes": "Validated regularly review and audit logs"
+      },
+      {
+        "capability": "Rapidly detect and remediate or mitigate vulnerabilities",
+        "implementation_status": "implemented",
+        "validation_method": "Documentation review and system verification",
+        "evidence_references": [
+          "README_ksi-mla.md"
+        ],
+        "notes": "Validated rapidly detect and remediate or mitigate vulnerabilities"
+      },
+      {
+        "capability": "Perform authenticated vulnerability scanning on publicly accessible components",
+        "implementation_status": "implemented",
+        "validation_method": "Documentation review and system verification",
+        "evidence_references": [
+          "README_ksi-mla.md"
+        ],
+        "notes": "Validated perform authenticated vulnerability scanning on publicly accessible components"
+      },
+      {
+        "capability": "Perform Infrastructure as Code (IaC) and configuration scanning",
+        "implementation_status": "implemented",
+        "validation_method": "Documentation review and system verification",
+        "evidence_references": [
+          "README_ksi-mla.md"
+        ],
+        "notes": "Validated perform infrastructure as code (iac) and configuration scanning"
+      },
+      {
+        "capability": "Centrally track and prioritize the remediation of identified vulnerabilities",
+        "implementation_status": "implemented",
+        "validation_method": "Documentation review and system verification",
+        "evidence_references": [
+          "README_ksi-mla.md"
+        ],
+        "notes": "Validated centrally track and prioritize the remediation of identified vulnerabilities"
+      }
+    ],
+    "evidence_reviewed": [
+      {
+        "filename": "README_ksi-mla.md",
+        "verification_status": "confirmed",
+        "verification_notes": "Evidence confirms implementation of ksi-mla requirements"
+      }
+    ],
+    "findings": [],
+    "verification_statement": "The 3PAO has validated that the system meets requirements. All KSI-MLA requirements have been met.",
+    "digital_signature": {
+      "signature_id": "sig-20250522-ksi-mla",
+      "signature_method": "PGP",
+      "signature_date": "2025-05-22T03:28:16Z",
+      "verification_uri": "https://example3pao.com/verify/ksi-mla-2025-05-22"
+    }
+  }
+}

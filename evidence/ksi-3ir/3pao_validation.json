@@ -1,0 +1,104 @@
+{
+  "ksi_id": "ksi-3ir",
+  "3pao_validation": {
+    "validation_date": "2025-05-22T00:00:00Z",
+    "validator": {
+      "name": "Jane Smith",
+      "organization": "Example 3PAO, Inc.",
+      "fedramp_id": "3PAO-XXXX-YYYY"
+    },
+    "ksi_requirements": {
+      "validation_status": "compliant",
+      "assertion_verified": true,
+      "validation_methods_used": [
+        "Documentation review",
+        "Architecture review",
+        "SBOM validation",
+        "Vendor attestation verification",
+        "Supply chain risk assessment"
+      ]
+    },
+    "required_capabilities": [
+      {
+        "capability": "Regularly confirm that services storing Federal information are all FedRAMP authorized and securely configured",
+        "implementation_status": "implemented",
+        "validation_method": "Reviewed fedramp_moderate_vendor_list.xlsx and confirmed all third-party services have FedRAMP authorization",
+        "evidence_references": ["fedramp_moderate_vendor_list.xlsx"],
+        "notes": "All third-party services verified as FedRAMP authorized"
+      },
+      {
+        "capability": "Identify and prioritize potential supply chain risks",
+        "implementation_status": "implemented",
+        "validation_method": "Reviewed system architecture and data flow documentation",
+        "evidence_references": ["system_boundary_with_elastic.pdf", "data_flow_elastic_metadata.pdf"],
+        "notes": "Supply chain risks properly identified and prioritized"
+      },
+      {
+        "capability": "Obtain a Software Bill of Materials (SBOM) for third party commercial software components",
+        "implementation_status": "implemented",
+        "validation_method": "Verified SBOM for completeness and accuracy",
+        "evidence_references": ["sbom_including_elastic.json"],
+        "notes": "SBOM follows NTIA minimum elements format and is complete"
+      },
+      {
+        "capability": "Confirm that third party information resources have a Secure Software Development Attestation with CISA",
+        "implementation_status": "implemented",
+        "validation_method": "Reviewed vendor attestation documentation",
+        "evidence_references": ["elastic_attestation.pdf"],
+        "notes": "Vendor attestation meets CISA requirements"
+      },
+      {
+        "capability": "Implement zero trust design principles",
+        "implementation_status": "implemented",
+        "validation_method": "Reviewed infrastructure configuration code and network design",
+        "evidence_references": ["terraform_interconnection_controls.png", "system_boundary_with_elastic.pdf"],
+        "notes": "Zero trust design principles implemented through segmentation and strict access controls"
+      }
+    ],
+    "evidence_reviewed": [
+      {
+        "filename": "ssp_ac20_elastic_cloud_excerpt.pdf",
+        "verification_status": "confirmed",
+        "verification_notes": "Elastic Cloud integration properly documented with security controls"
+      },
+      {
+        "filename": "system_boundary_with_elastic.pdf",
+        "verification_status": "confirmed",
+        "verification_notes": "System boundary correctly defined with clear third-party integration points"
+      },
+      {
+        "filename": "data_flow_elastic_metadata.pdf",
+        "verification_status": "confirmed",
+        "verification_notes": "Data flows limited to non-sensitive metadata only"
+      },
+      {
+        "filename": "terraform_interconnection_controls.png",
+        "verification_status": "confirmed",
+        "verification_notes": "Security Group and VPC restrictions properly implemented"
+      },
+      {
+        "filename": "fedramp_moderate_vendor_list.xlsx",
+        "verification_status": "confirmed",
+        "verification_notes": "All third-party services verified as FedRAMP authorized"
+      },
+      {
+        "filename": "sbom_including_elastic.json",
+        "verification_status": "confirmed",
+        "verification_notes": "SBOM is complete and follows NTIA minimum elements"
+      },
+      {
+        "filename": "elastic_attestation.pdf",
+        "verification_status": "confirmed",
+        "verification_notes": "Vendor attestation meets requirements"
+      }
+    ],
+    "findings": [],
+    "verification_statement": "The 3PAO has validated that the system properly manages supply chain risks through limited third-party service use, FedRAMP authorization verification, and proper documentation of vendor attestations and SBOMs. The forward-declaration of Elastic Cloud integration is properly documented and includes appropriate security controls for when it is deployed. All KSI-3IR requirements have been met.",
+    "digital_signature": {
+      "signature_id": "sig-20250522-15302",
+      "signature_method": "PGP",
+      "signature_date": "2025-05-22T15:30:20Z",
+      "verification_uri": "https://example3pao.com/verify/sig-20250522-15302"
+    }
+  }
+}

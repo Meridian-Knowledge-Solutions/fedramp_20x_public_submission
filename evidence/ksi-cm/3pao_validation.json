@@ -1,0 +1,123 @@
+{
+  "ksi_id": "ksi-cm",
+  "3pao_validation": {
+    "validation_date": "2025-05-22T03:24:01Z",
+    "validator": {
+      "name": "Jane Smith",
+      "organization": "Example 3PAO, Inc.",
+      "fedramp_id": "3PAO-XXXX-YYYY"
+    },
+    "ksi_requirements": {
+      "validation_status": "compliant",
+      "assertion_verified": true,
+      "validation_methods_used": [
+        "Change process review",
+        "Immutable deployment validation",
+        "Automated testing verification",
+        "Documentation review"
+      ]
+    },
+    "required_capabilities": [
+      {
+        "capability": "Log and monitor system modifications",
+        "implementation_status": "implemented",
+        "validation_method": "Documentation review and system verification",
+        "evidence_references": [
+          "cloud_trial.png",
+          "immutable_infrastructure_pipeline_terraform.pdf"
+        ],
+        "notes": "Validated log and monitor system modifications"
+      },
+      {
+        "capability": "Execute changes though redeployment of version controlled immutable resources rather than direct modification wherever possible",
+        "implementation_status": "implemented",
+        "validation_method": "Documentation review and system verification",
+        "evidence_references": [
+          "cloud_trial.png",
+          "immutable_infrastructure_pipeline_terraform.pdf"
+        ],
+        "notes": "Validated execute changes though redeployment of version controlled immutable resources rather than direct modification wherever possible"
+      },
+      {
+        "capability": "Implement automated testing and validation of changes prior to deployment",
+        "implementation_status": "implemented",
+        "validation_method": "Documentation review and system verification",
+        "evidence_references": [
+          "cloud_trial.png",
+          "immutable_infrastructure_pipeline_terraform.pdf"
+        ],
+        "notes": "Validated implement automated testing and validation of changes prior to deployment"
+      },
+      {
+        "capability": "Have a documented change management procedure",
+        "implementation_status": "implemented",
+        "validation_method": "Documentation review and system verification",
+        "evidence_references": [
+          "cloud_trial.png",
+          "immutable_infrastructure_pipeline_terraform.pdf"
+        ],
+        "notes": "Validated have a documented change management procedure"
+      },
+      {
+        "capability": "Evaluate the risk and potential impact of any change",
+        "implementation_status": "implemented",
+        "validation_method": "Documentation review and system verification",
+        "evidence_references": [
+          "cloud_trial.png",
+          "immutable_infrastructure_pipeline_terraform.pdf"
+        ],
+        "notes": "Validated evaluate the risk and potential impact of any change"
+      }
+    ],
+    "evidence_reviewed": [
+      {
+        "filename": "cloud_trial.png",
+        "verification_status": "confirmed",
+        "verification_notes": "Evidence confirms implementation of ksi-cm requirements"
+      },
+      {
+        "filename": "immutable_infrastructure_pipeline_terraform.pdf",
+        "verification_status": "confirmed",
+        "verification_notes": "Evidence confirms implementation of ksi-cm requirements"
+      },
+      {
+        "filename": "ci_cd_pipeline_testing_steps.pdf",
+        "verification_status": "confirmed",
+        "verification_notes": "Evidence confirms implementation of ksi-cm requirements"
+      },
+      {
+        "filename": "configuration_management_plan.pdf",
+        "verification_status": "confirmed",
+        "verification_notes": "Evidence confirms implementation of ksi-cm requirements"
+      },
+      {
+        "filename": "configuration_management_policy_and_procedures.pdf",
+        "verification_status": "confirmed",
+        "verification_notes": "Evidence confirms implementation of ksi-cm requirements"
+      },
+      {
+        "filename": "example_it_ops_ticket.png",
+        "verification_status": "confirmed",
+        "verification_notes": "Evidence confirms implementation of ksi-cm requirements"
+      },
+      {
+        "filename": "weekly_change_management_meeting_final.png",
+        "verification_status": "confirmed",
+        "verification_notes": "Evidence confirms implementation of ksi-cm requirements"
+      },
+      {
+        "filename": "terraform_plan_output.txt",
+        "verification_status": "confirmed",
+        "verification_notes": "Evidence confirms implementation of ksi-cm requirements"
+      }
+    ],
+    "findings": [],
+    "verification_statement": "The 3PAO has validated that the Configuration changes are centrally managed through version-controlled infrastructure, reviewed for risk, and deployed through automated CI/CD pipelines.. All KSI-CM requirements have been met.",
+    "digital_signature": {
+      "signature_id": "sig-20250522-ksi-cm",
+      "signature_method": "PGP",
+      "signature_date": "2025-05-22T03:24:01Z",
+      "verification_uri": "https://example3pao.com/verify/ksi-cm-2025-05-22"
+    }
+  }
+}

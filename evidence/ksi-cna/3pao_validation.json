@@ -1,0 +1,133 @@
+{
+  "ksi_id": "ksi-cna",
+  "3pao_validation": {
+    "validation_date": "2025-05-22T00:00:00Z",
+    "validator": {
+      "name": "Jane Smith",
+      "organization": "Example 3PAO, Inc.",
+      "fedramp_id": "3PAO-XXXX-YYYY"
+    },
+    "ksi_requirements": {
+      "validation_status": "compliant",
+      "assertion_verified": true,
+      "validation_methods_used": [
+        "Documentation review",
+        "Architecture review",
+        "Configuration analysis",
+        "Terraform validation",
+        "AWS service configuration verification"
+      ]
+    },
+    "required_capabilities": [
+      {
+        "capability": "Have denial of service (DoS) protection",
+        "implementation_status": "implemented",
+        "validation_method": "Verified AWS Shield Advanced configuration and tested effectiveness",
+        "evidence_references": ["aws_shield_dos_protection.pdf"],
+        "notes": "DoS protection implemented through AWS Shield Advanced"
+      },
+      {
+        "capability": "Configure firewalls/proxy servers to limit inbound and outbound traffic",
+        "implementation_status": "implemented",
+        "validation_method": "Reviewed WAF rule sets and NACL configurations",
+        "evidence_references": ["aws_waf_rule_set.png", "nacl_inbound_rules.png", "nacl_outbound_rules.png"],
+        "notes": "Traffic control implemented through WAF and NACLs"
+      },
+      {
+        "capability": "Use immutable containers and serverless functions with strictly defined functionality and privileges",
+        "implementation_status": "implemented",
+        "validation_method": "Verified Terraform configuration and permission sets",
+        "evidence_references": ["terraform_plan_output.txt", "permission_sets.pdf"],
+        "notes": "Infrastructure managed as immutable resources with strictly defined IAM roles"
+      },
+      {
+        "capability": "Design systems as logically segmented micro-services to minimize the attack surface and lateral movement if compromised",
+        "implementation_status": "implemented",
+        "validation_method": "Reviewed architecture diagrams and network design",
+        "evidence_references": ["system_boundary_and_network_architecture.pdf", "data_flow_diagram.pdf"],
+        "notes": "System properly segmented into isolated components"
+      },
+      {
+        "capability": "Use cloud native virtual networks and related capabilities to enforce logical traffic flow controls",
+        "implementation_status": "implemented",
+        "validation_method": "Verified VPC configurations and traffic flow enforcement",
+        "evidence_references": ["vpc_traffic_flow_enforcement.pdf"],
+        "notes": "Traffic flow controls properly implemented using AWS VPC features"
+      },
+      {
+        "capability": "Execute continuous scanning of cloud native system components",
+        "implementation_status": "implemented",
+        "validation_method": "Verified AWS Security Hub configuration",
+        "evidence_references": ["security_hub.pdf"],
+        "notes": "Continuous scanning implemented via Security Hub"
+      },
+      {
+        "capability": "Use high availability design principles to maximize uptime",
+        "implementation_status": "implemented",
+        "validation_method": "Reviewed system architecture and AWS service configurations",
+        "evidence_references": ["system_boundary_and_network_architecture.pdf"],
+        "notes": "High availability design implemented through multi-AZ deployment"
+      }
+    ],
+    "evidence_reviewed": [
+      {
+        "filename": "aws_shield_dos_protection.pdf",
+        "verification_status": "confirmed",
+        "verification_notes": "AWS Shield Advanced properly configured to protect against DDoS attacks"
+      },
+      {
+        "filename": "aws_waf_rule_set.png",
+        "verification_status": "confirmed",
+        "verification_notes": "WAF rules properly configured to block malicious traffic"
+      },
+      {
+        "filename": "nacl_inbound_rules.png",
+        "verification_status": "confirmed",
+        "verification_notes": "Inbound NACL rules properly restrict traffic"
+      },
+      {
+        "filename": "nacl_outbound_rules.png",
+        "verification_status": "confirmed",
+        "verification_notes": "Outbound NACL rules properly restrict traffic"
+      },
+      {
+        "filename": "system_boundary_and_network_architecture.pdf",
+        "verification_status": "confirmed",
+        "verification_notes": "Architecture follows cloud-native best practices"
+      },
+      {
+        "filename": "data_flow_diagram.pdf",
+        "verification_status": "confirmed",
+        "verification_notes": "Data flows properly controlled and secured"
+      },
+      {
+        "filename": "permission_sets.pdf",
+        "verification_status": "confirmed",
+        "verification_notes": "IAM permission sets follow least privilege principle"
+      },
+      {
+        "filename": "vpc_traffic_flow_enforcement.pdf",
+        "verification_status": "confirmed",
+        "verification_notes": "VPC traffic flow controls properly implemented"
+      },
+      {
+        "filename": "security_hub.pdf",
+        "verification_status": "confirmed",
+        "verification_notes": "Security Hub properly configured for continuous monitoring"
+      },
+      {
+        "filename": "terraform_plan_output.txt",
+        "verification_status": "confirmed",
+        "verification_notes": "Terraform configuration enforces immutable infrastructure"
+      }
+    ],
+    "findings": [],
+    "verification_statement": "The 3PAO has validated that the system uses a cloud-native architecture to isolate components, enforce traffic control, and minimize attack surface through zero trust design. All KSI-CNA requirements have been met, with effective implementation of DoS protection, traffic limiting, immutable infrastructure, logical segmentation, and continuous scanning.",
+    "digital_signature": {
+      "signature_id": "sig-20250522-15401",
+      "signature_method": "PGP",
+      "signature_date": "2025-05-22T15:40:10Z",
+      "verification_uri": "https://example3pao.com/verify/sig-20250522-15401"
+    }
+  }
+}
