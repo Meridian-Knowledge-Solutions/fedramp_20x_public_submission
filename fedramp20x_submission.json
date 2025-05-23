@@ -94,9 +94,8 @@
         },
         {
           "description": "Encrypt all federal and sensitive information at rest.",
-          "assertion": "false",
-          "evidence_reference": "evidence/ksi-sc/encryption_at_rest.png",
-          "validation_method": "Missing evidence - auto-failed"
+          "assertion": "true",
+          "evidence_reference": "evidence/ksi-sc/encryption_at_rest.png"
         },
         {
           "description": "Manage configuration centrally.",

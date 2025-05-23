@@ -183,6 +183,10 @@
     "commit_sha": "49a8fc0f7466fde21375ffc2958564fa35c96843",
     "timestamp": "2025-04-29T13:41:49-06:00"
   },
+  "evidence/ksi-sc/encryption_at_rest.png": {
+    "commit_sha": "0d6403e9753c6ad7b9220105c5060e2a53f13741",
+    "timestamp": "2025-05-23T12:15:45-04:00"
+  },
   "evidence/ksi-sc/https_tls_encryption_all_endpoints.png": {
     "commit_sha": "4322e79f9629fd3ed606c88af0eb0ca9370cc770",
     "timestamp": "2025-05-16T11:32:55-06:00"
