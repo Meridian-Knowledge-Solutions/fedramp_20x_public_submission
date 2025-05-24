@@ -261,56 +261,5 @@
 
     loadDashboard();
   </script>
-
-  <div class="container">
-    <h2 style="margin-top: 40px; color: #1e3a8a;">📡 Continuous CLI Validation</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>KSI ID</th>
-          <th>Validation ID</th>
-          <th>Title</th>
-          <th>CLI Result</th>
-          <th>Last Run</th>
-          <th>Source File</th>
-        </tr>
-      </thead>
-      <tbody id="cliResultsBody"></tbody>
-    </table>
-  </div>
-
-  <script>
-    const CLI_RESULTS_URL = "https://raw.githubusercontent.com/Meridian-Knowledge-Solutions/fedramp_20x_public_submission/main/continuous_ksi_results.json";
-
-    async function loadCliResults() {
-      try {
-        const res = await fetch(CLI_RESULTS_URL);
-        const data = await res.json();
-        const results = data.ksi_results;
-        renderCliTable(results);
-      } catch (e) {
-        console.error("Failed to load continuous CLI results:", e);
-      }
-    }
-
-    function renderCliTable(results) {
-      const tbody = document.getElementById("cliResultsBody");
-      results.forEach(item => {
-        const passed = item.assertion === true || item.assertion === "true";
-        const row = document.createElement("tr");
-        row.innerHTML = `
-          <td>${item.ksi_id}</td>
-          <td>${item.validation_id || "-"}</td>
-          <td>${item.title}</td>
-          <td><span class="status">${passed ? '✅' : '❌'}</span></td>
-          <td>${new Date(item.validation_timestamp).toLocaleString()}</td>
-          <td><code>${item.evidence_path}</code></td>
-        `;
-        tbody.appendChild(row);
-      });
-    }
-
-    loadCliResults();
-  </script>
 </body>
 </html>
