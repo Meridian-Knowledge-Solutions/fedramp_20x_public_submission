@@ -1,10 +1,11 @@
 
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>FedRAMP 20x Trust Dashboard</title>
-  <style>
+<meta charset="utf-8"/>
+<title>FedRAMP 20x Trust Dashboard</title>
+<style>
     body {
       font-family: 'Segoe UI', Tahoma, sans-serif;
       background-color: #f8fafc;
@@ -13,7 +14,7 @@
     }
     header {
       background-color: #004080;
-      color: #fff;
+      color: #fff; 
       padding: 20px;
       text-align: center;
     }
@@ -93,50 +94,47 @@
   </style>
 </head>
 <body>
-  <header>
-    <h1>FedRAMP 20x Trust Dashboard</h1>
-  </header>
-  
-  <div class="gpg-banner" style="background: #e6f4ea; border-left: 5px solid #34d058; padding: 1em; margin: 1em 20px; font-family: sans-serif; border-radius: 6px;">
-    <strong>🔐 3PAO Attestation Verified</strong><br>
-    This submission includes commits <strong>cryptographically signed</strong> by the 3PAO using GPG.<br><br>
-    <ul style="margin-left: 1.2em;">
-      <li><strong>Key ID:</strong> <code>6C8481C18765D19D</code></li>
-      <li><strong>Commit SHA:</strong> <code>abc1234</code> <em>(example)</em></li>
-      <li><strong>Status:</strong> ✅ Verified via GitHub</li>
-    </ul>
-    <a href="https://keys.openpgp.org/search?q=6C8481C18765D19D" target="_blank" style="color: #0969da;">🔎 View public GPG key</a>
-  </div>
-
+<header>
+<h1>FedRAMP 20x Trust Dashboard</h1>
+</header>
+<div class="gpg-banner" style="background: #e6f4ea; border-left: 5px solid #34d058; padding: 1em; margin: 1em 20px; font-family: sans-serif; border-radius: 6px;">
+<strong>🔐 3PAO Attestation Verified</strong><br/>
+    This submission includes commits <strong>cryptographically signed</strong> by the 3PAO using GPG.<br/><br/>
+<ul style="margin-left: 1.2em;">
+<li><strong>Key ID:</strong> <code>6C8481C18765D19D</code></li>
+<li><strong>Commit SHA:</strong> <code>abc1234</code> <em>(example)</em></li>
+<li><strong>Status:</strong> ✅ Verified via GitHub</li>
+</ul>
+<a href="https://keys.openpgp.org/search?q=6C8481C18765D19D" style="color: #0969da;" target="_blank">🔎 View public GPG key</a>
+</div>
 <div class="banner">
     Transparency-first implementation of the FedRAMP 20x pilot. Last metadata update: <span id="lastUpdated">loading...</span>
-  </div>
-  <div class="summary" id="summaryStats">Loading validation summary...</div>
-  <div class="container">
-    <div class="filter">
-      <label><input type="checkbox" id="filterFailed" onchange="toggleFailures()"> Show only ❌ failed validations</label>
-      <label>Filter by KSI:
+</div>
+<div class="summary" id="summaryStats">Loading validation summary...</div>
+<div class="container">
+<div class="filter">
+<label><input id="filterFailed" onchange="toggleFailures()" type="checkbox"/> Show only ❌ failed validations</label>
+<label>Filter by KSI:
         <select id="ksiFilter" onchange="applyKsiFilter()">
-          <option value="">All KSIs</option>
-        </select>
-      </label>
-    </div>
-    <table>
-      <thead>
-        <tr>
-          <th>KSI ID</th>
-          <th>Title</th>
-          <th>Description</th>
-          <th>Assertion</th>
-          <th>Evidence</th>
-          <th>Evidence Trace</th>
-        </tr>
-      </thead>
-      <tbody id="dashboardBody"></tbody>
-    </table>
-  </div>
-
-  <script>
+<option value="">All KSIs</option>
+</select>
+</label>
+</div>
+<table>
+<thead>
+<tr>
+<th>KSI ID</th>
+<th>Title</th>
+<th>Description</th>
+<th>Assertion</th>
+<th>Evidence</th>
+<th>Evidence Trace</th>
+</tr>
+</thead>
+<tbody id="dashboardBody"></tbody>
+</table>
+</div>
+<script>
     const SUBMISSION_URL = "https://raw.githubusercontent.com/Meridian-Knowledge-Solutions/fedramp_20x_public_submission/main/fedramp20x_submission.json";
     const METADATA_URL = "https://raw.githubusercontent.com/Meridian-Knowledge-Solutions/fedramp_20x_public_submission/main/evidence_commit_metadata.json";
 
@@ -261,25 +259,23 @@
 
     loadDashboard();
   </script>
+<div class="container">
+<h2 style="margin-top: 40px; color: #1e3a8a;">📡 Continuous CLI Validation</h2>
+<table>
+<thead>
+<tr>
+<th>KSI ID</th>
 
-  <div class="container">
-    <h2 style="margin-top: 40px; color: #1e3a8a;">📡 Continuous CLI Validation</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>KSI ID</th>
-          
-          <th>Title</th>
-          <th>CLI Result</th>
-          <th>Last Run</th>
-          <th>Source File</th>
-        </tr>
-      </thead>
-      <tbody id="cliResultsBody"></tbody>
-    </table>
-  </div>
-
-  <script>
+<th>Title</th>
+<th>CLI Result</th>
+<th>Last Run</th>
+<th>Source File</th>
+</tr>
+</thead>
+<tbody id="cliResultsBody"></tbody>
+</table>
+</div>
+<script>
     const CLI_RESULTS_URL = "https://raw.githubusercontent.com/Meridian-Knowledge-Solutions/fedramp_20x_public_submission/main/continuous_ksi_results.json";
 
     async function loadCliResults() {
