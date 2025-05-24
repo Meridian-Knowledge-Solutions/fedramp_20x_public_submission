@@ -268,7 +268,8 @@
       <thead>
         <tr>
           <th>KSI ID</th>
-          <th>Description</th>
+          <th>Validation ID</th>
+          <th>Title</th>
           <th>CLI Result</th>
           <th>Last Run</th>
           <th>Source File</th>
@@ -284,7 +285,8 @@
     async function loadCliResults() {
       try {
         const res = await fetch(CLI_RESULTS_URL);
-        const results = await res.json();
+        const data = await res.json();
+        const results = data.ksi_results;
         renderCliTable(results);
       } catch (e) {
         console.error("Failed to load continuous CLI results:", e);
@@ -294,14 +296,15 @@
     function renderCliTable(results) {
       const tbody = document.getElementById("cliResultsBody");
       results.forEach(item => {
+        const passed = item.assertion === true || item.assertion === "true";
         const row = document.createElement("tr");
-        const passed = item.cli_passed === true || item.cli_passed === "true";
         row.innerHTML = `
           <td>${item.ksi_id}</td>
-          <td>${item.description}</td>
+          <td>${item.validation_id || "-"}</td>
+          <td>${item.title}</td>
           <td><span class="status">${passed ? '✅' : '❌'}</span></td>
-          <td>${new Date(item.last_updated).toLocaleString()}</td>
-          <td><code>${item.source_file}</code></td>
+          <td>${new Date(item.validation_timestamp).toLocaleString()}</td>
+          <td><code>${item.evidence_path}</code></td>
         `;
         tbody.appendChild(row);
       });
