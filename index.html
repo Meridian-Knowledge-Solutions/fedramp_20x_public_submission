@@ -112,7 +112,14 @@
     Transparency-first implementation of the FedRAMP 20x pilot. Last metadata update: <span id="lastUpdated">loading...</span>
   </div>
   <div class="summary" id="summaryStats">Loading validation summary...</div>
-  <div class="container">
+  
+<ul class="nav nav-tabs" style="display:flex; gap: 10px; padding: 10px 20px; background: #f1f5f9;">
+  <li><a href="#" onclick="showSection('staticSection')">📄 Static Validation</a></li>
+  <li><a href="#" onclick="showSection('cliSection')">⚙️ Continuous CLI Validation</a></li>
+</ul>
+
+<div id="staticSection" style="display: block;">
+      
     <div class="filter">
       <label><input type="checkbox" id="filterFailed" onchange="toggleFailures()"> Show only ❌ failed validations</label>
       <label>Filter by KSI:
@@ -262,7 +269,14 @@
     loadDashboard();
   </script>
 
-  <div class="container">
+  
+<ul class="nav nav-tabs" style="display:flex; gap: 10px; padding: 10px 20px; background: #f1f5f9;">
+  <li><a href="#" onclick="showSection('staticSection')">📄 Static Validation</a></li>
+  <li><a href="#" onclick="showSection('cliSection')">⚙️ Continuous CLI Validation</a></li>
+</ul>
+
+<div id="staticSection" style="display: block;">
+      
     <h2 style="margin-top: 40px; color: #1e3a8a;">📡 Continuous CLI Validation</h2>
     <table>
       <thead>
@@ -293,7 +307,93 @@
       }
     }
 
-    function renderCliTable(results) {
+    
+function renderCliTable(results) {
+  const tbody = document.getElementById("cliResultsBody");
+  let pass = 0, fail = 0, latest = null;
+
+  results.forEach((item, idx) => {
+    const passed = item.cli_result === true;
+    const localTime = new Date(item.last_run).toLocaleString();
+    if (!latest || item.last_run > latest) latest = item.last_run;
+    if (passed) pass++; else fail++;
+
+    const row = document.createElement("tr");
+    row.style.backgroundColor = passed ? "#ecfdf5" : "#fef2f2";
+    row.innerHTML = `
+      <td>${item.ksi_id}</td>
+      <td>${item.validation_id || "-"}</td>
+      <td>${item.title}</td>
+      <td><span class="status" title="${passed ? 'Passed via automation' : 'Failed via automation check'}">${passed ? '✅' : '❌'}</span></td>
+      <td>${localTime}</td>
+      <td>
+        <code>${item.source_file}</code><br/>
+        <span class="meta" title="Full SHA: ${item.commit_sha}">🔹 SHA: ${item.commit_sha?.slice(0, 7)}</span><br/>
+        <a href="https://github.com/Meridian-Knowledge-Solutions/fedramp_20x_public_submission/issues/new?title=Question+on+${item.ksi_id}&body=KSI: ${item.ksi_id}%0AValidation ID: ${item.validation_id}%0ASource: ${item.source_file}" target="_blank">🛠 Raise Issue</a>
+        <br/><a href="#" onclick="toggleDetails(${idx}); return false;">🔍 Details</a>
+      </td>
+    `;
+    tbody.appendChild(row);
+
+    const detailRow = document.createElement("tr");
+    detailRow.id = "cli-details-" + idx;
+    detailRow.style.display = "none";
+    detailRow.innerHTML = `
+      <td colspan="6" style="background:#f0f4f8; font-size:0.9em; padding: 10px;">
+        <strong>CLI Tool:</strong> <code>${item.cli_tool || 'N/A'}</code><br/>
+        <strong>Raw Output:</strong> <pre>${item.raw_output || 'N/A'}</pre>
+        <strong>Assertion Type:</strong> ${item.assertion_type || 'Unknown'}<br/>
+        <strong>3PAO Review Status:</strong> ${item.review_status || 'Not Marked'}<br/>
+        <strong>Last Run UTC:</strong> ${item.last_run}<br/>
+        <strong>Git Commit:</strong> <code>${item.commit_sha}</code>
+      </td>
+    `;
+    tbody.appendChild(detailRow);
+  });
+
+  const summary = `CLI Validations: ${pass + fail} | ✅ Passed: ${pass} | ❌ Failed: ${fail} | Last Run: ${new Date(latest).toLocaleString()}`;
+  const summaryDiv = document.createElement("div");
+  summaryDiv.className = "summary";
+  summaryDiv.textContent = summary;
+  document.querySelector("#cliSection .container").insertBefore(summaryDiv, document.getElementById("cliResultsBody").parentElement);
+}
+
+function toggleDetails(idx) {
+  const el = document.getElementById("cli-details-" + idx);
+  el.style.display = el.style.display === "none" ? "table-row" : "none";
+}
+
+  const tbody = document.getElementById("cliResultsBody");
+  let pass = 0, fail = 0, latest = null;
+
+  results.forEach(item => {
+    const passed = item.cli_result === true;
+    const localTime = new Date(item.last_run).toLocaleString();
+    if (!latest || item.last_run > latest) latest = item.last_run;
+    if (passed) pass++; else fail++;
+
+    const row = document.createElement("tr");
+    row.style.backgroundColor = passed ? "#ecfdf5" : "#fef2f2";
+    row.innerHTML = `
+      <td>${item.ksi_id}</td>
+      <td>${item.validation_id || "-"}</td>
+      <td>${item.title}</td>
+      <td><span class="status" title="${passed ? 'Passed via automation' : 'Failed via automation check'}">${passed ? '✅' : '❌'}</span></td>
+      <td>${localTime}</td>
+      <td><code>${item.source_file}</code><br/>
+          <span class="meta" title="Full SHA: ${item.commit_sha}">🔹 SHA: ${item.commit_sha?.slice(0, 7)}</span><br/>
+          <a href="https://github.com/Meridian-Knowledge-Solutions/fedramp_20x_public_submission/issues/new?title=Question+on+${item.ksi_id}&body=KSI: ${item.ksi_id}%0AValidation ID: ${item.validation_id}%0ASource: ${item.source_file}" target="_blank">🛠 Raise Issue</a>
+      </td>
+    `;
+    tbody.appendChild(row);
+  });
+
+  const summary = `CLI Validations: ${pass + fail} | ✅ Passed: ${pass} | ❌ Failed: ${fail} | Last Run: ${new Date(latest).toLocaleString()}`;
+  const summaryDiv = document.createElement("div");
+  summaryDiv.className = "summary";
+  summaryDiv.textContent = summary;
+  document.querySelector("#cliSection .container").insertBefore(summaryDiv, document.getElementById("cliResultsBody").parentElement);
+}
       const tbody = document.getElementById("cliResultsBody");
       results.forEach(item => {
         const passed = item.assertion === true || item.assertion === "true";
@@ -311,6 +411,13 @@
     }
 
     loadCliResults();
+
+function showSection(id) {
+  document.getElementById("staticSection").style.display = "none";
+  document.getElementById("cliSection").style.display = "none";
+  document.getElementById(id).style.display = "block";
+}
+
   </script>
 </body>
 </html>
