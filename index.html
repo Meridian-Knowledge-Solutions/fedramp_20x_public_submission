@@ -121,22 +121,19 @@
         </select>
       </label>
     </div>
-    
-<div id="cliSummaryBanner"></div>
-<table>
-  <thead>
-    <tr>
-      <th>KSI ID</th>
-      <th>Title</th>
-      <th>CLI Result</th>
-      <th>Last Run</th>
-      <th>Source File</th>
-      <th>Evidence Trace</th>
-    </tr>
-  </thead>
-  <tbody id="cliResultsBody"></tbody>
-</table>
-
+    <table>
+      <thead>
+        <tr>
+          <th>KSI ID</th>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Assertion</th>
+          <th>Evidence</th>
+          <th>Evidence Trace</th>
+        </tr>
+      </thead>
+      <tbody id="dashboardBody"></tbody>
+    </table>
   </div>
 
   <script>
@@ -267,22 +264,19 @@
 
   <div class="container">
     <h2 style="margin-top: 40px; color: #1e3a8a;">📡 Continuous CLI Validation</h2>
-    
-<div id="cliSummaryBanner"></div>
-<table>
-  <thead>
-    <tr>
-      <th>KSI ID</th>
-      <th>Title</th>
-      <th>CLI Result</th>
-      <th>Last Run</th>
-      <th>Source File</th>
-      <th>Evidence Trace</th>
-    </tr>
-  </thead>
-  <tbody id="cliResultsBody"></tbody>
-</table>
-
+    <table>
+      <thead>
+        <tr>
+          <th>KSI ID</th>
+          
+          <th>Title</th>
+          <th>CLI Result</th>
+          <th>Last Run</th>
+          <th>Source File</th>
+        </tr>
+      </thead>
+      <tbody id="cliResultsBody"></tbody>
+    </table>
   </div>
 
   <script>
@@ -318,65 +312,5 @@
 
     loadCliResults();
   </script>
-
-<script>
-  const CLI_RESULTS_URL = "https://raw.githubusercontent.com/Meridian-Knowledge-Solutions/fedramp_20x_public_submission/main/continuous_ksi_results.json";
-  const COMMIT_META_URL = "https://raw.githubusercontent.com/Meridian-Knowledge-Solutions/fedramp_20x_public_submission/main/evidence_commit_metadata.json";
-
-  async function loadCliResults() {
-    try {
-      const res = await fetch(CLI_RESULTS_URL);
-      const data = await res.json();
-      const results = data.ksi_results || [];
-
-      const metaRes = await fetch(COMMIT_META_URL);
-      const commitMeta = await metaRes.json();
-
-      renderCliSummary(results);
-      renderCliTable(results, commitMeta);
-    } catch (e) {
-      console.error("Failed to load CLI results:", e);
-    }
-  }
-
-  function renderCliSummary(results) {
-    const total = results.length;
-    const passed = results.filter(r => r.assertion === "true").length;
-    const failed = total - passed;
-    const lastRun = results[0]?.validation_timestamp || "N/A";
-
-    document.getElementById("cliSummaryBanner").innerHTML = `
-      <div style="padding: 10px; background: #f0f4ff; border: 1px solid #cce; border-radius: 6px; margin-bottom: 20px;">
-        📊 <strong>Continuous Validations</strong>: ✅ ${passed} passed | ❌ ${failed} failed | ⏱ Last Run: ${new Date(lastRun).toLocaleString()}
-      </div>
-    `;
-  }
-
-  function renderCliTable(results, commitMeta) {
-    const tbody = document.getElementById("cliResultsBody");
-    results.forEach(item => {
-      const passed = item.assertion === "true";
-      const meta = commitMeta[item.evidence_path] || {};
-      const row = document.createElement("tr");
-      row.innerHTML = `
-        <td>${item.ksi_id}</td>
-        <td>${item.title}</td>
-        <td><span class="status">${passed ? '✅' : '❌'}</span></td>
-        <td>${new Date(item.validation_timestamp).toLocaleString()}</td>
-        <td><code>${item.evidence_path}</code></td>
-        <td style="font-size: 0.85em;">
-          ${meta.commit_sha ? `
-            SHA: <code style="color: #1e40af;">${meta.commit_sha.slice(0, 7)}</code><br>
-            ⏱ ${new Date(meta.timestamp).toLocaleString()}
-          ` : '<span style="color:gray;">–</span>'}
-        </td>
-      `;
-      tbody.appendChild(row);
-    });
-  }
-
-  loadCliResults();
-</script>
-
 </body>
 </html>
